@@ -8,8 +8,6 @@ import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
