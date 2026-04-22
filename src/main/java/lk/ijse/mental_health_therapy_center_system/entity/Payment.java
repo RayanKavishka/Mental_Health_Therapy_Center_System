@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -16,9 +17,9 @@ import java.util.List;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "therapy_program")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "therapyProgramCache")
-public class TherapyProgram {
+@Table(name = "payment")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "paymentCache")
+public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -26,12 +27,19 @@ public class TherapyProgram {
     @Column(length = 100, nullable = false)
     private String name;
 
-    @Column(length = 100, nullable = false)
-    private String duration;
-
     @Column(precision = 12, scale = 2, nullable = false)
-    private double fee;
+    private double amount;
 
-    @OneToMany(mappedBy = "therapyProgram")
-    private List<TherapySession> therapySessions;
+    @Column(nullable = false)
+    private Date date;
+
+    private String status = "Pending";
+
+    @OneToOne
+    @JoinColumn(name = "patientProgramId")
+    private PatientProgram patientProgram;
+
+    @OneToOne
+    @JoinColumn(name = "therapySessionId")
+    private TherapySession therapySession;
 }

@@ -8,6 +8,8 @@ import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,4 +27,10 @@ public class Therapist {
     private String name;
 
     private String availability = "Available";
+
+    @OneToMany(mappedBy = "therapist", cascade = CascadeType.ALL)
+    private List<TherapistProgram> therapistPrograms;
+
+    @OneToMany(mappedBy = "therapist")
+    private List<TherapySession> therapySessions;
 }

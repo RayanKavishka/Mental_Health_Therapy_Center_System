@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.engine.internal.Cascade;
 
 @Getter
 @Setter
@@ -14,18 +15,21 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "therapist_program")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "therapistProgramCache")
-public class TherapistProgram {
+@Table(name = "patient_program")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "patientProgramCache")
+public class PatientProgram {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "therapistId")
-    private Therapist therapist;
+    @JoinColumn(name = "patientId")
+    private Patient patient;
 
     @ManyToOne
     @JoinColumn(name = "therapyProgramId")
     private TherapyProgram therapyProgram;
+
+    @OneToOne(mappedBy = "patientProgram", cascade = CascadeType.ALL)
+    private Payment payment;
 }

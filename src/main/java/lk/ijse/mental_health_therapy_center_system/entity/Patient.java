@@ -16,9 +16,9 @@ import java.util.List;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "therapy_program")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "therapyProgramCache")
-public class TherapyProgram {
+@Table(name = "patient")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "patientCache")
+public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -26,12 +26,18 @@ public class TherapyProgram {
     @Column(length = 100, nullable = false)
     private String name;
 
-    @Column(length = 100, nullable = false)
-    private String duration;
+    @Column(length = 200, nullable = false)
+    private String email;
 
-    @Column(precision = 12, scale = 2, nullable = false)
-    private double fee;
+    @Column(length = 10, nullable = false)
+    private String phone;
 
-    @OneToMany(mappedBy = "therapyProgram")
+    @Column(length = 500, nullable = false)
+    private String medicalHistory;
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    private List<TherapistProgram> therapistPrograms;
+
+    @OneToMany(mappedBy = "patient")
     private List<TherapySession> therapySessions;
 }

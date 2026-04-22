@@ -16,22 +16,19 @@ import java.util.List;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "therapy_program")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "therapyProgramCache")
-public class TherapyProgram {
+@Table(name = "user")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "userCache")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(length = 100, nullable = false)
-    private String name;
+    private String userName;
 
     @Column(length = 100, nullable = false)
-    private String duration;
+    private String password;
 
-    @Column(precision = 12, scale = 2, nullable = false)
-    private double fee;
-
-    @OneToMany(mappedBy = "therapyProgram")
-    private List<TherapySession> therapySessions;
+    @Column(nullable = false)
+    private String role;
 }
