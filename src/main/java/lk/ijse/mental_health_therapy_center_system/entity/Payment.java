@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Getter
@@ -27,7 +28,7 @@ public class Payment {
     private String name;
 
     @Column(precision = 12, scale = 2, nullable = false)
-    private double amount;
+    private BigDecimal amount;
 
     @Column(nullable = false)
     private Date date;

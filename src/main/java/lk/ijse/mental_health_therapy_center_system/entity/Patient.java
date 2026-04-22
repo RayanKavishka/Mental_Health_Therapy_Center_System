@@ -36,7 +36,7 @@ public class Patient {
     private String medicalHistory;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
-    private List<TherapistProgram> therapistPrograms;
+    private List<PatientProgram> patientPrograms;
 
     @OneToMany(mappedBy = "patient")
     private List<TherapySession> therapySessions;

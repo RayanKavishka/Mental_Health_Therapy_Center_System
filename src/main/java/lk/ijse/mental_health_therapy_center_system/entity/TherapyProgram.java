@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Getter
@@ -30,7 +31,7 @@ public class TherapyProgram {
     private String duration;
 
     @Column(precision = 12, scale = 2, nullable = false)
-    private double fee;
+    private BigDecimal fee;
 
     @OneToMany(mappedBy = "therapyProgram")
     private List<TherapySession> therapySessions;
