@@ -15,6 +15,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
 @Table(name = "patient_program")
+@Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "patientProgramCache")
 public class PatientProgram {
     @Id

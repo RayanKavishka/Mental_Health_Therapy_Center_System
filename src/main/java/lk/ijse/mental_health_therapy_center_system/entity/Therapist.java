@@ -17,6 +17,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "therapist")
+@Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "therapistCache")
 public class Therapist {
     @Id

@@ -17,6 +17,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "therapySession")
+@Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "therapySessionCache")
 public class TherapySession {
     @Id

@@ -18,6 +18,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "payment")
+@Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "paymentCache")
 public class Payment {
     @Id
