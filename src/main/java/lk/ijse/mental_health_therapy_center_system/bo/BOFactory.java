@@ -22,7 +22,7 @@ public class BOFactory {
         USER
     }
 
-    public SuperBO geBO(BOType boType) {
+    public SuperBO getBO(BOType boType) {
         switch(boType) {
             case REGISTER:
                 return new RegisterBOImpl();

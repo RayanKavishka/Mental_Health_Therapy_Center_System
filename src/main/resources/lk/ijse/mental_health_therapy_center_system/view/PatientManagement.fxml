@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="720" prefWidth="1200" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.mental_health_therapy_center_system.contoller.PatientController">
+
+    <!-- TOP NAV -->
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="60" style="-fx-background-color: #111111; -fx-border-color: #5D0E41; -fx-border-width: 0 0 2 0;">
+            <padding><Insets left="30" right="30" /></padding>
+            <Label style="-fx-font-family: 'Georgia'; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #FF204E;" text="SERENITY" />
+            <Label style="-fx-font-size: 13px; -fx-text-fill: #777;" text="  |  Patient Management" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="goToDashboardBtn" style="-fx-background-color: transparent; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 3; -fx-text-fill: #777; -fx-font-size: 12px; -fx-cursor: hand; -fx-padding: 6 18;" text="← Back to Dashboard" />
+        </HBox>
+    </top>
+
+    <center>
+        <HBox spacing="0">
+
+            <!-- LEFT: Form Panel -->
+            <ScrollPane fitToWidth="true" prefWidth="380" style="-fx-background: #0d0d0d; -fx-background-color: #0d0d0d; -fx-border-color: #1a1a1a; -fx-border-width: 0 1 0 0;">
+                <VBox spacing="16">
+                    <padding><Insets bottom="30" left="28" right="28" top="30" /></padding>
+
+                    <Label style="-fx-font-size: 10px; -fx-text-fill: #FF204E; -fx-letter-spacing: 3px; -fx-font-weight: bold;" text="PATIENT DETAILS" />
+                    <Separator style="-fx-background-color: #222;" />
+
+                    <!-- ID -->
+                    <VBox spacing="5">
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #555; -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="PATIENT ID" />
+                        <TextField fx:id="patientIdFiled" editable="false" prefHeight="40" promptText="Auto-generated" style="-fx-background-color: #0a0a0a; -fx-border-color: #222; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: #555; -fx-font-size: 13px; -fx-prompt-text-fill: #333;" />
+                    </VBox>
+
+                    <!-- Name -->
+                    <VBox spacing="5">
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="FULL NAME *" />
+                        <TextField fx:id="patientNameFiled" prefHeight="40" promptText="Enter patient full name" style="-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #444;" />
+                    </VBox>
+
+                    <!-- Email -->
+                    <VBox spacing="5">
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="EMAIL ADDRESS *" />
+                        <TextField fx:id="patientEmailFiled" prefHeight="40" promptText="example@email.com" style="-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #444;" />
+                    </VBox>
+
+                    <!-- Phone -->
+                    <VBox spacing="5">
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="PHONE NUMBER *" />
+                        <TextField fx:id="patientPhoneFiled" prefHeight="40" promptText="+94 XX XXX XXXX" style="-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #444;" />
+                    </VBox>
+
+                    <!-- Medical History -->
+                    <VBox spacing="5">
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="MEDICAL HISTORY" />
+                        <TextArea fx:id="patientMediHisFiled" prefHeight="100" promptText="Enter patient medical history, conditions, notes..." style="-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: #000000; -fx-font-size: 13px; -fx-prompt-text-fill: #000000;" wrapText="true" />
+                    </VBox>
+
+                    <!-- Action Buttons -->
+                    <VBox spacing="10">
+                        <padding><Insets top="10" /></padding>
+
+                        <HBox spacing="10">
+                            <Button fx:id="addPatientBtn" onAction="#savePatient" prefHeight="40" prefWidth="155" style="-fx-background-color: linear-gradient(to right, #A0153E, #FF204E); -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: bold; -fx-background-radius: 4; -fx-cursor: hand;" text="Add Patient" />
+                            <Button fx:id="updatePatientBtn" prefHeight="40" prefWidth="105" style="-fx-background-color: #1a1a1a; -fx-border-color: #A0153E; -fx-border-width: 1; -fx-border-radius: 4; -fx-text-fill: #A0153E; -fx-font-size: 13px; -fx-font-weight: bold; -fx-cursor: hand;" text="Update" />
+                        </HBox>
+
+                        <HBox spacing="10">
+                            <Button fx:id="deletePatientBtn" prefHeight="38" prefWidth="155" style="-fx-background-color: #1a1a1a; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 4; -fx-text-fill: #FF204E; -fx-font-size: 12px; -fx-cursor: hand;" text="Delete" />
+                            <Button fx:id="resetPatientFields" prefHeight="38" prefWidth="105" style="-fx-background-color: transparent; -fx-border-color: #333; -fx-border-width: 1; -fx-border-radius: 4; -fx-text-fill: #666; -fx-font-size: 12px; -fx-cursor: hand;" text="Reset" />
+                        </HBox>
+                    </VBox>
+
+                </VBox>
+            </ScrollPane>
+
+            <!-- RIGHT: Table Panel -->
+            <VBox spacing="16" HBox.hgrow="ALWAYS">
+                <padding><Insets bottom="28" left="28" right="28" top="30" /></padding>
+
+                <!-- Search Bar -->
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <Label style="-fx-font-family: 'Georgia'; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;" text="PATIENT RECORDS" HBox.hgrow="ALWAYS" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <TextField fx:id="searchPatient" prefHeight="38" prefWidth="300" promptText="🔍  Search by name, email or phone..." style="-fx-background-color: #1a1a1a; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #555;" />
+                    <Button fx:id="searchBtn" prefHeight="38" style="-fx-background-color: #A0153E; -fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold; -fx-background-radius: 4; -fx-cursor: hand; -fx-padding: 0 18;" text="Search" />
+                </HBox>
+
+                <Separator style="-fx-background-color: #1e1e1e;" />
+
+                <!-- TableView -->
+                <TableView fx:id="patientTable" prefHeight="520" style="-fx-background-color: #111111; -fx-border-color: #1e1e1e; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-table-cell-border-color: #1e1e1e;">
+                    <columns>
+                        <TableColumn fx:id="colId" prefWidth="52.372161865234375" style="-fx-text-fill: #A0153E; -fx-font-size: 11px; -fx-font-weight: bold; -fx-letter-spacing: 1px;" text="ID" />
+                        <TableColumn fx:id="colName" prefWidth="194.43939208984375" style="-fx-text-fill: #A0153E; -fx-font-size: 11px; -fx-font-weight: bold;" text="Full Name" />
+                        <TableColumn fx:id="colEmail" prefWidth="186.56060791015625" style="-fx-text-fill: #A0153E; -fx-font-size: 11px; -fx-font-weight: bold;" text="Email" />
+                        <TableColumn fx:id="colPhone" prefWidth="109.2310791015625" style="-fx-text-fill: #A0153E; -fx-font-size: 11px; -fx-font-weight: bold;" text="Phone" />
+                        <TableColumn fx:id="colMediHistory" minWidth="0.0" prefWidth="160.35894775390625" style="-fx-text-fill: #A0153E; -fx-font-size: 11px; -fx-font-weight: bold;" text="Medical History" />
+                  <TableColumn fx:id="colStatus" prefWidth="63.68585205078125" style="-fx-text-fill: #A0153E; -fx-font-size: 11px; -fx-font-weight: bold;" text="Status" />
+                    </columns>
+                    <placeholder>
+                        <Label style="-fx-text-fill: #444; -fx-font-size: 13px; -fx-font-style: italic;" text="No patient records found." />
+                    </placeholder>
+                </TableView>
+
+            </VBox>
+        </HBox>
+    </center>
+
+</BorderPane>

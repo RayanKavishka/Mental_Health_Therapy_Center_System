@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           prefWidth="900" prefHeight="600"
+           style="-fx-background-color: #000000;">
+
+    <HBox>
+
+        <!-- Left Branding Panel -->
+        <VBox prefWidth="420" prefHeight="600" alignment="TOP_LEFT"
+              style="-fx-background-color: linear-gradient(to bottom, #5D0E41, #A0153E, #FF204E);">
+            <padding><Insets top="60" left="50" right="40" bottom="40"/></padding>
+
+            <Label text="SERENITY"
+                   style="-fx-font-family: 'Georgia'; -fx-font-size: 34px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Label text="Mental Health Therapy Center"
+                   style="-fx-font-family: 'Georgia'; -fx-font-size: 13px; -fx-text-fill: rgba(255,255,255,0.75);">
+                <VBox.margin><Insets bottom="60"/></VBox.margin>
+            </Label>
+
+            <Label text="———"
+                   style="-fx-text-fill: rgba(255,255,255,0.4); -fx-font-size: 18px;">
+                <VBox.margin><Insets bottom="20"/></VBox.margin>
+            </Label>
+
+            <Label text="&#34;Healing minds,&#10;restoring lives.&#34;"
+                   style="-fx-font-family: 'Georgia'; -fx-font-size: 24px; -fx-font-style: italic; -fx-text-fill: white; -fx-line-spacing: 6px;" wrapText="true">
+                <VBox.margin><Insets bottom="40"/></VBox.margin>
+            </Label>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Label text="Secure  ·  Confidential  ·  Compassionate"
+                   style="-fx-font-size: 11px; -fx-text-fill: rgba(255,255,255,0.55);"/>
+        </VBox>
+
+        <!-- Right Login Panel -->
+        <VBox prefWidth="480" prefHeight="600" alignment="CENTER"
+              style="-fx-background-color: #111111;">
+            <padding><Insets top="60" left="60" right="60" bottom="40"/></padding>
+
+            <Label text="WELCOME BACK"
+                   style="-fx-font-size: 10px; -fx-text-fill: #FF204E; -fx-letter-spacing: 4px; -fx-font-weight: bold;"/>
+
+            <Label text="Sign In"
+                   style="-fx-font-family: 'Georgia'; -fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: white;">
+                <VBox.margin><Insets top="8" bottom="40"/></VBox.margin>
+            </Label>
+
+            <!-- Role -->
+            <Label text="ROLE"
+                   style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 3px; -fx-font-weight: bold;"/>
+            <ComboBox promptText="Select your role"
+                      prefWidth="360" prefHeight="44"
+                      style="-fx-background-color: #1a1a1a; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #666;">
+                <VBox.margin><Insets top="6" bottom="18"/></VBox.margin>
+            </ComboBox>
+
+            <!-- Username -->
+            <Label text="USERNAME"
+                   style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 3px; -fx-font-weight: bold;"/>
+            <TextField promptText="Enter your username"
+                       prefWidth="360" prefHeight="44"
+                       style="-fx-background-color: #1a1a1a; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #555;">
+                <VBox.margin><Insets top="6" bottom="18"/></VBox.margin>
+            </TextField>
+
+            <!-- Password -->
+            <Label text="PASSWORD"
+                   style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 3px; -fx-font-weight: bold;"/>
+            <PasswordField promptText="Enter your password"
+                           prefWidth="360" prefHeight="44"
+                           style="-fx-background-color: #1a1a1a; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #555;">
+                <VBox.margin><Insets top="6" bottom="30"/></VBox.margin>
+            </PasswordField>
+
+            <!-- Login Button -->
+            <Button text="SIGN IN"
+                    prefWidth="360" prefHeight="46"
+                    style="-fx-background-color: linear-gradient(to right, #A0153E, #FF204E); -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: bold; -fx-background-radius: 4; -fx-cursor: hand;">
+                <VBox.margin><Insets bottom="16"/></VBox.margin>
+            </Button>
+
+            <Label text="Forgot password? Contact the system administrator."
+                   style="-fx-font-size: 11px; -fx-text-fill: #555; -fx-font-style: italic;"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Label text="© 2025 Serenity Mental Health Therapy Center"
+                   style="-fx-font-size: 10px; -fx-text-fill: #333;"/>
+        </VBox>
+
+    </HBox>
+</StackPane>

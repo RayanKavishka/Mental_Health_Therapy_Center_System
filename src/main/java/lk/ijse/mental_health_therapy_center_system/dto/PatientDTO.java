@@ -17,6 +17,13 @@ public class PatientDTO {
         this.medicalHistory = medicalHistory;
     }
 
+    public PatientDTO(String name, String email, String phone, String medicalHistory) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.medicalHistory = medicalHistory;
+    }
+
     public int getId() {
         return id;
     }

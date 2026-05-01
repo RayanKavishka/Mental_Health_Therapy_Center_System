@@ -7,12 +7,13 @@ module lk.ijse.mental_health_therapy_center_system {
     requires java.sql;
     requires static lombok;
     requires cache.api;
+    requires org.controlsfx.controls;
 
     // Allow To Hibernate to reflect on entity classes
     opens lk.ijse.mental_health_therapy_center_system.entity to org.hibernate.orm.core;
     opens lk.ijse.mental_health_therapy_center_system to javafx.fxml;
-//    opens lk.ijse.mental_health_therapy_center_system.contoller to javafx.fxml;
+    opens lk.ijse.mental_health_therapy_center_system.contoller to javafx.fxml;
 
     exports lk.ijse.mental_health_therapy_center_system;
-//    exports lk.ijse.mental_health_therapy_center_system.contoller;
+    exports lk.ijse.mental_health_therapy_center_system.contoller;
 }

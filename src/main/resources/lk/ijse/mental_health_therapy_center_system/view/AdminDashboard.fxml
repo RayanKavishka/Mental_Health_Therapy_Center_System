@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefWidth="1200" prefHeight="720"
+            style="-fx-background-color: #000000;">
+
+    <!-- TOP NAV BAR -->
+    <top>
+        <HBox prefHeight="60" alignment="CENTER_LEFT"
+              style="-fx-background-color: #111111; -fx-border-color: #5D0E41; -fx-border-width: 0 0 2 0;">
+            <padding><Insets left="30" right="30"/></padding>
+
+            <Label text="SERENITY"
+                   style="-fx-font-family: 'Georgia'; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #FF204E;"/>
+            <Label text="  |  Admin Portal"
+                   style="-fx-font-size: 13px; -fx-text-fill: #777;">
+                <HBox.margin><Insets right="40"/></HBox.margin>
+            </Label>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label text="● ADMIN"
+                   style="-fx-font-size: 11px; -fx-text-fill: #FF204E; -fx-font-weight: bold;">
+                <HBox.margin><Insets right="20"/></HBox.margin>
+            </Label>
+            <Button text="Logout"
+                    style="-fx-background-color: transparent; -fx-border-color: #A0153E; -fx-border-width: 1; -fx-border-radius: 3; -fx-text-fill: #A0153E; -fx-font-size: 12px; -fx-cursor: hand; -fx-padding: 6 18;"/>
+        </HBox>
+    </top>
+
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox prefWidth="220" prefHeight="660"
+              style="-fx-background-color: #0d0d0d; -fx-border-color: #1a1a1a; -fx-border-width: 0 1 0 0;">
+            <padding><Insets top="30" bottom="30"/></padding>
+
+            <Label text="NAVIGATION"
+                   style="-fx-font-size: 9px; -fx-text-fill: #444; -fx-letter-spacing: 3px; -fx-font-weight: bold; -fx-padding: 0 0 10 20;"/>
+
+            <Button text="  🏠  Dashboard" prefWidth="220" prefHeight="46"
+                    style="-fx-background-color: linear-gradient(to right, #5D0E41, #A0153E); -fx-text-fill: white; -fx-font-size: 13px; -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 20; -fx-cursor: hand; -fx-border-width: 0;"/>
+
+            <Button text="  👤  Therapists" prefWidth="220" prefHeight="46"
+                    style="-fx-background-color: transparent; -fx-text-fill: #aaa; -fx-font-size: 13px; -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 20; -fx-cursor: hand; -fx-border-width: 0;"/>
+
+            <Button text="  📋  Therapy Programs" prefWidth="220" prefHeight="46"
+                    style="-fx-background-color: transparent; -fx-text-fill: #aaa; -fx-font-size: 13px; -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 20; -fx-cursor: hand; -fx-border-width: 0;"/>
+
+            <Button text="  📊  Reports" prefWidth="220" prefHeight="46"
+                    style="-fx-background-color: transparent; -fx-text-fill: #aaa; -fx-font-size: 13px; -fx-alignment: CENTER_LEFT; -fx-padding: 0 0 0 20; -fx-cursor: hand; -fx-border-width: 0;"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Label text="v1.0.0  —  Serenity HMS"
+                   style="-fx-font-size: 10px; -fx-text-fill: #333; -fx-padding: 0 0 0 20;"/>
+        </VBox>
+    </left>
+
+    <!-- MAIN CONTENT -->
+    <center>
+        <ScrollPane fitToWidth="true"
+                    style="-fx-background: #000000; -fx-background-color: #000000; -fx-border-width: 0;">
+            <VBox spacing="24">
+                <padding><Insets top="35" left="35" right="35" bottom="35"/></padding>
+
+                <!-- Header -->
+                <VBox spacing="4">
+                    <Label text="Admin Dashboard"
+                           style="-fx-font-family: 'Georgia'; -fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <Label text="Overview of system activity and quick access"
+                           style="-fx-font-size: 13px; -fx-text-fill: #666;"/>
+                </VBox>
+
+                <!-- Stats Row -->
+                <HBox spacing="20">
+
+                    <VBox prefWidth="190" prefHeight="110" alignment="CENTER_LEFT"
+                          style="-fx-background-color: #111111; -fx-border-color: #5D0E41; -fx-border-width: 0 0 0 4; -fx-background-radius: 6; -fx-border-radius: 6;">
+                        <padding><Insets left="22" top="20" bottom="20"/></padding>
+                        <Label text="THERAPISTS"
+                               style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;"/>
+                        <Label text="—"
+                               style="-fx-font-size: 34px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                        <Label text="Registered"
+                               style="-fx-font-size: 11px; -fx-text-fill: #555;"/>
+                    </VBox>
+
+                    <VBox prefWidth="190" prefHeight="110" alignment="CENTER_LEFT"
+                          style="-fx-background-color: #111111; -fx-border-color: #A0153E; -fx-border-width: 0 0 0 4; -fx-background-radius: 6; -fx-border-radius: 6;">
+                        <padding><Insets left="22" top="20" bottom="20"/></padding>
+                        <Label text="PROGRAMS"
+                               style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;"/>
+                        <Label text="—"
+                               style="-fx-font-size: 34px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                        <Label text="Active"
+                               style="-fx-font-size: 11px; -fx-text-fill: #555;"/>
+                    </VBox>
+
+                    <VBox prefWidth="190" prefHeight="110" alignment="CENTER_LEFT"
+                          style="-fx-background-color: #111111; -fx-border-color: #FF204E; -fx-border-width: 0 0 0 4; -fx-background-radius: 6; -fx-border-radius: 6;">
+                        <padding><Insets left="22" top="20" bottom="20"/></padding>
+                        <Label text="SESSIONS TODAY"
+                               style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;"/>
+                        <Label text="—"
+                               style="-fx-font-size: 34px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                        <Label text="Scheduled"
+                               style="-fx-font-size: 11px; -fx-text-fill: #555;"/>
+                    </VBox>
+
+                    <VBox prefWidth="190" prefHeight="110" alignment="CENTER_LEFT"
+                          style="-fx-background-color: #111111; -fx-border-color: #5D0E41; -fx-border-width: 0 0 0 4; -fx-background-radius: 6; -fx-border-radius: 6;">
+                        <padding><Insets left="22" top="20" bottom="20"/></padding>
+                        <Label text="REVENUE"
+                               style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;"/>
+                        <Label text="—"
+                               style="-fx-font-size: 34px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                        <Label text="This Month"
+                               style="-fx-font-size: 11px; -fx-text-fill: #555;"/>
+                    </VBox>
+
+                </HBox>
+
+                <!-- Quick Access -->
+                <Label text="QUICK ACCESS"
+                       style="-fx-font-size: 10px; -fx-text-fill: #444; -fx-letter-spacing: 3px; -fx-font-weight: bold;"/>
+
+                <HBox spacing="20">
+                    <VBox prefWidth="230" prefHeight="130" alignment="CENTER"
+                          style="-fx-background-color: #111111; -fx-background-radius: 8; -fx-border-color: #222; -fx-border-radius: 8; -fx-cursor: hand;">
+                        <Label text="👤" style="-fx-font-size: 30px;"/>
+                        <Label text="Manage Therapists"
+                               style="-fx-font-size: 14px; -fx-text-fill: white; -fx-font-weight: bold;">
+                            <VBox.margin><Insets top="10" bottom="4"/></VBox.margin>
+                        </Label>
+                        <Label text="Add · Edit · Remove"
+                               style="-fx-font-size: 11px; -fx-text-fill: #555;"/>
+                    </VBox>
+
+                    <VBox prefWidth="230" prefHeight="130" alignment="CENTER"
+                          style="-fx-background-color: #111111; -fx-background-radius: 8; -fx-border-color: #222; -fx-border-radius: 8; -fx-cursor: hand;">
+                        <Label text="📋" style="-fx-font-size: 30px;"/>
+                        <Label text="Therapy Programs"
+                               style="-fx-font-size: 14px; -fx-text-fill: white; -fx-font-weight: bold;">
+                            <VBox.margin><Insets top="10" bottom="4"/></VBox.margin>
+                        </Label>
+                        <Label text="Create · Modify · Remove"
+                               style="-fx-font-size: 11px; -fx-text-fill: #555;"/>
+                    </VBox>
+
+                    <VBox prefWidth="230" prefHeight="130" alignment="CENTER"
+                          style="-fx-background-color: #111111; -fx-background-radius: 8; -fx-border-color: #222; -fx-border-radius: 8; -fx-cursor: hand;">
+                        <Label text="📊" style="-fx-font-size: 30px;"/>
+                        <Label text="Reports &amp; Analytics"
+                               style="-fx-font-size: 14px; -fx-text-fill: white; -fx-font-weight: bold;">
+                            <VBox.margin><Insets top="10" bottom="4"/></VBox.margin>
+                        </Label>
+                        <Label text="Performance · Statistics"
+                               style="-fx-font-size: 11px; -fx-text-fill: #555;"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Recent Activity -->
+                <VBox spacing="12"
+                      style="-fx-background-color: #111111; -fx-background-radius: 8; -fx-border-color: #1e1e1e; -fx-border-radius: 8;">
+                    <padding><Insets top="20" left="24" right="24" bottom="20"/></padding>
+                    <Label text="RECENT ACTIVITY"
+                           style="-fx-font-size: 10px; -fx-text-fill: #444; -fx-letter-spacing: 3px; -fx-font-weight: bold;"/>
+                    <Separator style="-fx-background-color: #222;"/>
+                    <Label text="No recent activity to display."
+                           style="-fx-font-size: 13px; -fx-text-fill: #444; -fx-font-style: italic;"/>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>
