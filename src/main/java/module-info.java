@@ -13,6 +13,7 @@ module lk.ijse.mental_health_therapy_center_system {
     opens lk.ijse.mental_health_therapy_center_system.entity to org.hibernate.orm.core;
     opens lk.ijse.mental_health_therapy_center_system to javafx.fxml;
     opens lk.ijse.mental_health_therapy_center_system.contoller to javafx.fxml;
+    opens lk.ijse.mental_health_therapy_center_system.dto to javafx.base;
 
     exports lk.ijse.mental_health_therapy_center_system;
     exports lk.ijse.mental_health_therapy_center_system.contoller;

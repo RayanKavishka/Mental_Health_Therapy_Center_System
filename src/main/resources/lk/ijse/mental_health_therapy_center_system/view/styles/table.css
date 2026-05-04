@@ -1,0 +1,95 @@
+/* ================= TABLE BASE ================= */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent; /* disable default borders */
+}
+
+/* ================= HEADER ================= */
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #3e3e42 transparent;
+    -fx-border-width: 0 0 1 0; /* bottom header line */
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent #3e3e42 transparent transparent;
+    -fx-border-width: 0 1 0 0; /* vertical header lines */
+}
+
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+}
+
+/* ================= ROWS ================= */
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #3e3e42 transparent;
+    -fx-border-width: 0 0 1 0; /* horizontal row lines */
+}
+
+
+.table-row-cell:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* ================= CELLS ================= */
+.table-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent #3e3e42 transparent transparent;
+    -fx-border-width: 0 1 0 0; /* vertical column lines */
+    -fx-padding: 12;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ff8383;
+    -fx-alignment: CENTER;
+}
+
+
+/* ================= FOCUS FIX ================= */
+.table-view:focused,
+.table-row-cell:focused {
+    -fx-background-insets: 0;
+}
+
+/* ================= SCROLL BAR ================= */
+.table-view .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.table-view .scroll-bar:vertical .track,
+.table-view .scroll-bar:horizontal .track {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+}
+
+.table-view .scroll-bar:vertical .thumb,
+.table-view .scroll-bar:horizontal .thumb {
+    -fx-background-color: #3e3e42;
+}
+
+.table-view .scroll-bar .increment-arrow,
+.table-view .scroll-bar .decrement-arrow {
+    -fx-background-color: #3e3e42;
+}
+
+.table-view .corner {
+    -fx-background-color: #3e3e42;
+}
+
+/* ================= HIDE SCROLL BARS ================= */
+.table-view .scroll-bar:vertical,
+.table-view .scroll-bar:horizontal {
+    -fx-opacity: 0;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+}
+
+.table-view .table-cell {
+    -fx-font-family: "Fjalla One";
+}
+
+.table-view .column-header .label {
+    -fx-font-family: "Fjalla One";
+}

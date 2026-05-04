@@ -34,6 +34,9 @@ public class TherapyProgram {
     @Column(precision = 12, scale = 2, nullable = false)
     private BigDecimal fee;
 
+    @Column(nullable = false)
+    private String status = "Active";
+
     @OneToMany(mappedBy = "therapyProgram")
     private List<TherapySession> therapySessions;
 }
