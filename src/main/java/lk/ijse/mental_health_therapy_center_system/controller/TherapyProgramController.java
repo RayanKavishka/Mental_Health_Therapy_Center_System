@@ -1,4 +1,4 @@
-package lk.ijse.mental_health_therapy_center_system.contoller;
+package lk.ijse.mental_health_therapy_center_system.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -76,7 +76,7 @@ public class TherapyProgramController implements Initializable {
     private static final String DURATION_REGEX = "^\\d+\\s+(week|weeks|month|months|year|years)$";
     private static final String PRICE_REGEX = "^\\d+(\\.\\d{1,2})?$";
 
-    TherapyProgramBO therapyProgramBO = (TherapyProgramBO) BOFactory.getInstance().getBO(BOFactory.BOType.THERAPY_PROGRAM);
+    private final TherapyProgramBO therapyProgramBO = (TherapyProgramBO) BOFactory.getInstance().getBO(BOFactory.BOType.THERAPY_PROGRAM);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -1,4 +1,4 @@
-package lk.ijse.mental_health_therapy_center_system.contoller;
+package lk.ijse.mental_health_therapy_center_system.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -72,8 +72,8 @@ public class PatientController implements Initializable {
     private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
     private static final String PHONE_REGEX = "^[0]{1}[7]{1}[01245678]{1}[0-9]{7}$";
 
-    RegisterBO registerBO = (RegisterBO) BOFactory.getInstance().getBO(BOFactory.BOType.REGISTER);
-    TherapyProgramBO therapyProgramBO = (TherapyProgramBO) BOFactory.getInstance().getBO(BOFactory.BOType.THERAPY_PROGRAM);
+    private final RegisterBO registerBO = (RegisterBO) BOFactory.getInstance().getBO(BOFactory.BOType.REGISTER);
+    private final TherapyProgramBO therapyProgramBO = (TherapyProgramBO) BOFactory.getInstance().getBO(BOFactory.BOType.THERAPY_PROGRAM);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -116,7 +116,7 @@ public class PatientController implements Initializable {
                 });
     }
 
-    // Load therapy programs table
+    // Load patient table
     private void loadPatientTable() {
         try {
             List<PatientDTO> patients = registerBO.getAllPatients();
@@ -239,7 +239,7 @@ public class PatientController implements Initializable {
         }
     }
 
-    // Handle reset therapy program fields
+    // Handle reset patient fields
     @FXML
     private void resetAllFields() {
         patientNameFiled.setText("");

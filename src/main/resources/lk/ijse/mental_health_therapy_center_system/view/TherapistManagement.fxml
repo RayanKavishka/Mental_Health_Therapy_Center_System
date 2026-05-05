@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefWidth="1200" prefHeight="720"
-            style="-fx-background-color: #000000;">
+<BorderPane prefHeight="720" prefWidth="1200" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.mental_health_therapy_center_system.controller.TherapistController">
 
     <!-- TOP NAV -->
     <top>
-        <HBox prefHeight="60" alignment="CENTER_LEFT"
-              style="-fx-background-color: #111111; -fx-border-color: #5D0E41; -fx-border-width: 0 0 2 0;">
-            <padding><Insets left="30" right="30"/></padding>
-            <Label text="SERENITY"
-                   style="-fx-font-family: 'Georgia'; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #FF204E;"/>
-            <Label text="  |  Therapist Management"
-                   style="-fx-font-size: 13px; -fx-text-fill: #777;"/>
-            <Region HBox.hgrow="ALWAYS"/>
-            <Label text="ADMIN ONLY"
-                   style="-fx-font-size: 10px; -fx-text-fill: #FF204E; -fx-background-color: #1a0008; -fx-border-color: #FF204E; -fx-border-width: 1; -fx-border-radius: 3; -fx-background-radius: 3; -fx-padding: 4 10; -fx-font-weight: bold;">
-                <HBox.margin><Insets right="16"/></HBox.margin>
+        <HBox alignment="CENTER_LEFT" prefHeight="60" style="-fx-background-color: #111111; -fx-border-color: #5D0E41; -fx-border-width: 0 0 2 0;">
+            <padding><Insets left="30" right="30" /></padding>
+            <Label style="-fx-font-family: 'Georgia'; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #FF204E;" text="SERENITY" />
+            <Label style="-fx-font-size: 13px; -fx-text-fill: #777;" text="  |  Therapist Management" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label style="-fx-font-size: 10px; -fx-text-fill: #FF204E; -fx-background-color: #1a0008; -fx-border-color: #FF204E; -fx-border-width: 1; -fx-border-radius: 3; -fx-background-radius: 3; -fx-padding: 4 10; -fx-font-weight: bold;" text="ADMIN ONLY">
+                <HBox.margin><Insets right="16" /></HBox.margin>
             </Label>
-            <Button text="← Dashboard"
-                    style="-fx-background-color: transparent; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 3; -fx-text-fill: #777; -fx-font-size: 12px; -fx-cursor: hand; -fx-padding: 6 18;"/>
+            <Button style="-fx-background-color: transparent; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 3; -fx-text-fill: #777; -fx-font-size: 12px; -fx-cursor: hand; -fx-padding: 6 18;" text="← Dashboard" />
         </HBox>
     </top>
 
@@ -33,74 +35,52 @@
         <HBox spacing="0">
 
             <!-- LEFT: Form Panel -->
-            <ScrollPane fitToWidth="true" prefWidth="380"
-                        style="-fx-background: #0d0d0d; -fx-background-color: #0d0d0d; -fx-border-color: #1a1a1a; -fx-border-width: 0 1 0 0;">
+            <ScrollPane fitToWidth="true" prefWidth="380" style="-fx-background: #0d0d0d; -fx-background-color: #0d0d0d; -fx-border-color: #1a1a1a; -fx-border-width: 0 1 0 0;">
                 <VBox spacing="16">
-                    <padding><Insets top="30" left="28" right="28" bottom="30"/></padding>
+                    <padding><Insets bottom="30" left="28" right="28" top="30" /></padding>
 
-                    <Label text="THERAPIST DETAILS"
-                           style="-fx-font-size: 10px; -fx-text-fill: #FF204E; -fx-letter-spacing: 3px; -fx-font-weight: bold;"/>
-                    <Separator style="-fx-background-color: #222;"/>
+                    <Label style="-fx-font-size: 10px; -fx-text-fill: #FF204E; -fx-letter-spacing: 3px; -fx-font-weight: bold;" text="THERAPIST DETAILS" />
+                    <Separator style="-fx-background-color: #222;" />
 
                     <!-- ID -->
                     <VBox spacing="5">
-                        <Label text="THERAPIST ID"
-                               style="-fx-font-size: 10px; -fx-text-fill: #555; -fx-letter-spacing: 2px; -fx-font-weight: bold;"/>
-                        <TextField promptText="Auto-generated"
-                                   prefHeight="40" editable="false"
-                                   style="-fx-background-color: #0a0a0a; -fx-border-color: #222; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: #555; -fx-font-size: 13px; -fx-prompt-text-fill: #333;"/>
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #555; -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="THERAPIST ID" />
+                        <TextField fx:id="therapistId" editable="false" prefHeight="40" promptText="Auto-generated" style="-fx-background-color: #0a0a0a; -fx-border-color: #222; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: #555; -fx-font-size: 13px; -fx-prompt-text-fill: #333;" />
                     </VBox>
 
                     <!-- Name -->
                     <VBox spacing="5">
-                        <Label text="FULL NAME *"
-                               style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;"/>
-                        <TextField promptText="Enter therapist full name"
-                                   prefHeight="40"
-                                   style="-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #444;"/>
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="FULL NAME *" />
+                        <TextField fx:id="therapistName" prefHeight="40" promptText="Enter therapist full name" style="-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #444;" />
+                  <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="Email" />
+                  <TextField fx:id="therapistEmail" prefHeight="40" promptText="Enter therapist email" style="-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #444;" />
                     </VBox>
 
                     <!-- Availability -->
                     <VBox spacing="5">
-                        <Label text="AVAILABILITY *"
-                               style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;"/>
-                        <ComboBox promptText="Select availability status"
-                                  prefWidth="324" prefHeight="40"
-                                  style="-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #444;"/>
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="AVAILABILITY *" />
+                        <ComboBox fx:id="therapistAvailability" prefHeight="40" prefWidth="324" promptText="Select availability status" style="-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: white;" />
                     </VBox>
 
                     <!-- Assign Programs -->
                     <VBox spacing="5">
-                        <Label text="ASSIGN THERAPY PROGRAM"
-                               style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;"/>
-                        <ComboBox promptText="Select therapy program"
-                                  prefWidth="324" prefHeight="40"
-                                  style="-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #444;"/>
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="ASSIGN THERAPY PROGRAM" />
+                        <ComboBox fx:id="therapyProgramsComboBox" prefHeight="40" prefWidth="324" promptText="Select therapy program" style="-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: white;" />
                     </VBox>
 
                     <!-- Schedule Note -->
-                    <VBox spacing="5">
-                        <Label text="SCHEDULE NOTES"
-                               style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;"/>
-                        <TextArea promptText="Enter schedule notes, working days, shift timings..."
-                                  prefHeight="90" wrapText="true"
-                                  style="-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #444;"/>
-                    </VBox>
+                    <VBox spacing="5" />
 
                     <!-- Action Buttons -->
                     <VBox spacing="10">
-                        <padding><Insets top="10"/></padding>
+                        <padding><Insets top="10" /></padding>
                         <HBox spacing="10">
-                            <Button text="Add Therapist" prefWidth="155" prefHeight="40"
-                                    style="-fx-background-color: linear-gradient(to right, #A0153E, #FF204E); -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: bold; -fx-background-radius: 4; -fx-cursor: hand;"/>
-                            <Button text="Update" prefWidth="105" prefHeight="40"
-                                    style="-fx-background-color: #1a1a1a; -fx-border-color: #A0153E; -fx-border-width: 1; -fx-border-radius: 4; -fx-text-fill: #A0153E; -fx-font-size: 13px; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                            <Button fx:id="therapistSaveBtn" onAction="#saveTherapist" prefHeight="40" prefWidth="155" style="-fx-background-color: linear-gradient(to right, #A0153E, #FF204E); -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: bold; -fx-background-radius: 4; -fx-cursor: hand;" text="Add Therapist" />
+                            <Button onAction="#updateTherapist" prefHeight="40" prefWidth="105" style="-fx-background-color: #1a1a1a; -fx-border-color: #A0153E; -fx-border-width: 1; -fx-border-radius: 4; -fx-text-fill: #A0153E; -fx-font-size: 13px; -fx-font-weight: bold; -fx-cursor: hand;" text="Update" />
                         </HBox>
                         <HBox spacing="10">
-                            <Button text="Delete" prefWidth="155" prefHeight="38"
-                                    style="-fx-background-color: #1a1a1a; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 4; -fx-text-fill: #FF204E; -fx-font-size: 12px; -fx-cursor: hand;"/>
-                            <Button text="Reset" prefWidth="105" prefHeight="38"
-                                    style="-fx-background-color: transparent; -fx-border-color: #333; -fx-border-width: 1; -fx-border-radius: 4; -fx-text-fill: #666; -fx-font-size: 12px; -fx-cursor: hand;"/>
+                            <Button onAction="#deleteTherapist" prefHeight="38" prefWidth="155" style="-fx-background-color: #1a1a1a; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 4; -fx-text-fill: #FF204E; -fx-font-size: 12px; -fx-cursor: hand;" text="Delete" />
+                            <Button onAction="#resetAllFields" prefHeight="38" prefWidth="105" style="-fx-background-color: transparent; -fx-border-color: #333; -fx-border-width: 1; -fx-border-radius: 4; -fx-text-fill: #666; -fx-font-size: 12px; -fx-cursor: hand;" text="Reset" />
                         </HBox>
                     </VBox>
 
@@ -108,40 +88,29 @@
             </ScrollPane>
 
             <!-- RIGHT: Table Panel -->
-            <VBox HBox.hgrow="ALWAYS" spacing="16">
-                <padding><Insets top="30" left="28" right="28" bottom="28"/></padding>
+            <VBox spacing="16" HBox.hgrow="ALWAYS">
+                <padding><Insets bottom="28" left="28" right="28" top="30" /></padding>
 
-                <HBox spacing="12" alignment="CENTER_LEFT">
-                    <Label text="THERAPIST RECORDS"
-                           style="-fx-font-family: 'Georgia'; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
-                    <Region HBox.hgrow="ALWAYS"/>
-                    <TextField promptText="🔍  Search by name or availability..."
-                               prefWidth="290" prefHeight="38"
-                               style="-fx-background-color: #1a1a1a; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #555;"/>
-                    <Button text="Search" prefHeight="38"
-                            style="-fx-background-color: #A0153E; -fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold; -fx-background-radius: 4; -fx-cursor: hand; -fx-padding: 0 18;"/>
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <Label style="-fx-font-family: 'Georgia'; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;" text="THERAPIST RECORDS" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <TextField prefHeight="38" prefWidth="290" promptText="🔍  Search by name or availability..." style="-fx-background-color: #1a1a1a; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #555;" />
+                    <Button prefHeight="38" style="-fx-background-color: #A0153E; -fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold; -fx-background-radius: 4; -fx-cursor: hand; -fx-padding: 0 18;" text="Search" />
                 </HBox>
 
-                <Separator style="-fx-background-color: #1e1e1e;"/>
+                <Separator style="-fx-background-color: #1e1e1e;" />
 
-                <TableView prefHeight="520"
-                           style="-fx-background-color: #111111; -fx-border-color: #1e1e1e; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-table-cell-border-color: #1e1e1e;">
+                <TableView fx:id="therapistTable" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleTableClick" prefHeight="332.0" prefWidth="959.0">
                     <columns>
-                        <TableColumn text="ID" prefWidth="60"
-                                     style="-fx-text-fill: #A0153E; -fx-font-size: 11px; -fx-font-weight: bold;"/>
-                        <TableColumn text="Full Name" prefWidth="220"
-                                     style="-fx-text-fill: #A0153E; -fx-font-size: 11px; -fx-font-weight: bold;"/>
-                        <TableColumn text="Availability" prefWidth="160"
-                                     style="-fx-text-fill: #A0153E; -fx-font-size: 11px; -fx-font-weight: bold;"/>
-                        <TableColumn text="Assigned Program" prefWidth="200"
-                                     style="-fx-text-fill: #A0153E; -fx-font-size: 11px; -fx-font-weight: bold;"/>
-                        <TableColumn text="Schedule Notes" prefWidth="180"
-                                     style="-fx-text-fill: #A0153E; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                        <TableColumn fx:id="colId" prefWidth="54.654327392578125" text="Id" />
+                        <TableColumn fx:id="colName" prefWidth="276.6112060546875" text="Therapist Name" />
+                        <TableColumn fx:id="colEmail" prefWidth="262.888671875" text="Email" />
+                        <TableColumn fx:id="colAvailability" prefWidth="164.61126708984375" text="Availability" />
+                  <TableColumn fx:id="colStatus" prefWidth="105.79736328125" text="Status" />
                     </columns>
-                    <placeholder>
-                        <Label text="No therapist records found."
-                               style="-fx-text-fill: #444; -fx-font-size: 13px; -fx-font-style: italic;"/>
-                    </placeholder>
+                    <stylesheets>
+                        <URL value="@styles/table.css" />
+                    </stylesheets>
                 </TableView>
             </VBox>
         </HBox>

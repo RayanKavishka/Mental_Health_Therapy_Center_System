@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -27,11 +28,18 @@ public class Therapist {
     @Column(length = 100, nullable = false)
     private String name;
 
-    private String availability = "Available";
+    @Column(length = 200, nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private String availability;
+
+    @Column(nullable = false)
+    private String status;
 
     @OneToMany(mappedBy = "therapist", cascade = CascadeType.ALL)
-    private List<TherapistProgram> therapistPrograms;
+    private List<TherapistProgram> therapistPrograms = new ArrayList<>();
 
     @OneToMany(mappedBy = "therapist")
-    private List<TherapySession> therapySessions;
+    private List<TherapySession> therapySessions = new ArrayList<>();
 }
