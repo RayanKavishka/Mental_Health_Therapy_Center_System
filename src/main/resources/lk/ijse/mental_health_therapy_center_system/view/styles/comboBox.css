@@ -1,0 +1,48 @@
+/* ================= COMBO BOX ================= */
+.combo-box {
+    -fx-background-color: #222222;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-color: transparent;
+}
+
+/* Text (selected item) */
+.combo-box .list-cell {
+    -fx-text-fill: white;
+}
+
+/* Button cell (visible part when not expanded) */
+.combo-box .button-cell {
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+}
+
+/* Editable text field (if editable = true) */
+.combo-box .text-field {
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #666666;
+    -fx-background-color: transparent;
+}
+
+/* Dropdown list */
+.combo-box-popup .list-view {
+    -fx-background-color: #222222;
+    -fx-background-radius: 15;
+}
+
+/* Dropdown items */
+.combo-box-popup .list-cell {
+    -fx-background-color: #222222;
+    -fx-text-fill: white;
+}
+
+/* Hover effect */
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #333333;
+}
+
+/* Selected item in dropdown */
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: #444444;
+    -fx-text-fill: white;
+}

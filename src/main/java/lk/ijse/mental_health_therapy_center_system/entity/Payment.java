@@ -9,7 +9,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -29,10 +29,13 @@ public class Payment {
     private String name;
 
     @Column(precision = 12, scale = 2, nullable = false)
-    private BigDecimal amount;
+    private BigDecimal paidAmount;
 
     @Column(nullable = false)
-    private Date date;
+    private LocalDate date;
+
+    @Column(precision = 12, scale = 2, nullable = false)
+    private BigDecimal pendingAmount;
 
     private String status = "Pending";
 

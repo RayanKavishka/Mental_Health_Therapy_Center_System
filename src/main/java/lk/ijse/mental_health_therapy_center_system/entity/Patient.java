@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -36,8 +37,11 @@ public class Patient {
     @Column(length = 500, nullable = false)
     private String medicalHistory;
 
+    @Column(nullable = false)
+    private String status = "Active";
+
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
-    private List<PatientProgram> patientPrograms;
+    private List<PatientProgram> patientPrograms = new ArrayList<>();
 
     @OneToMany(mappedBy = "patient")
     private List<TherapySession> therapySessions;

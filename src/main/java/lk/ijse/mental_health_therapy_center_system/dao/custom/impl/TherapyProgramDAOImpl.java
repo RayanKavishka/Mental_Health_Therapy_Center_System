@@ -23,6 +23,7 @@ public class TherapyProgramDAOImpl implements TherapyProgramDAO {
             e.printStackTrace();
             transaction.rollback();
             return false;
+
         } finally {
             session.close();
         }
@@ -45,6 +46,9 @@ public class TherapyProgramDAOImpl implements TherapyProgramDAO {
             e.printStackTrace();
             transaction.rollback();
             return false;
+
+        } finally {
+            session.close();
         }
     }
 
@@ -63,6 +67,9 @@ public class TherapyProgramDAOImpl implements TherapyProgramDAO {
             e.printStackTrace();
             transaction.rollback();
             return false;
+
+        } finally {
+            session.close();
         }
     }
 

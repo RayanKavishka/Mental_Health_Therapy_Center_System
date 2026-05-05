@@ -192,12 +192,12 @@ public class TherapyProgramController implements Initializable {
     // Set data on fields when click table row
     @FXML
     private void handleTableClick(MouseEvent event) {
-        TherapyProgramDTO selectedCus = (TherapyProgramDTO) therapyProgramTable.getSelectionModel().getSelectedItem();
-        if (selectedCus != null) {
-            therapyId.setText(String.valueOf(selectedCus.getId()));
-            therapyName.setText(selectedCus.getName());
-            therapyDuration.setText(selectedCus.getDuration());
-            therapyFee.setText(String.valueOf(selectedCus.getFee()));
+        TherapyProgramDTO selectedObj = (TherapyProgramDTO) therapyProgramTable.getSelectionModel().getSelectedItem();
+        if (selectedObj != null) {
+            therapyId.setText(String.valueOf(selectedObj.getId()));
+            therapyName.setText(selectedObj.getName());
+            therapyDuration.setText(selectedObj.getDuration());
+            therapyFee.setText(String.valueOf(selectedObj.getFee()));
         }
     }
 

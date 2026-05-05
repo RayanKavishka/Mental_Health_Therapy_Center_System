@@ -6,8 +6,18 @@ public class PatientDTO {
     private String email;
     private String phone;
     private String medicalHistory;
+    private String status;
 
     public PatientDTO() {}
+
+    public PatientDTO(int id, String name, String email, String phone, String medicalHistory, String status) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.medicalHistory = medicalHistory;
+        this.status = status;
+    }
 
     public PatientDTO(int id, String name, String email, String phone, String medicalHistory) {
         this.id = id;
@@ -62,5 +72,13 @@ public class PatientDTO {
 
     public void setMedicalHistory(String medicalHistory) {
         this.medicalHistory = medicalHistory;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

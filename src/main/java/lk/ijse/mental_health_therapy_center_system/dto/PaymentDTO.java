@@ -1,28 +1,27 @@
 package lk.ijse.mental_health_therapy_center_system.dto;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class PaymentDTO {
     private int id;
     private String name;
-    private double amount;
-    private Date date;
+    private int patientId;
+    private BigDecimal paidAmount;
+    private LocalDate date;
+    private BigDecimal pendingAmount;
     private String status;
-
-    private int patientProgramId;
-    private int therapySessionId;
 
     public PaymentDTO() {}
 
-    public PaymentDTO(int id, String name, double amount, Date date, String status,
-                      int patientProgramId, int therapySessionId) {
+    public PaymentDTO(int id, String name, int patientId, BigDecimal paidAmount, LocalDate date, BigDecimal pendingAmount, String status) {
         this.id = id;
         this.name = name;
-        this.amount = amount;
+        this.patientId = patientId;
+        this.paidAmount = paidAmount;
         this.date = date;
+        this.pendingAmount = pendingAmount;
         this.status = status;
-        this.patientProgramId = patientProgramId;
-        this.therapySessionId = therapySessionId;
     }
 
     public int getId() {
@@ -41,20 +40,36 @@ public class PaymentDTO {
         this.name = name;
     }
 
-    public double getAmount() {
-        return amount;
+    public int getPatientId() {
+        return patientId;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
     }
 
-    public Date getDate() {
+    public BigDecimal getPaidAmount() {
+        return paidAmount;
+    }
+
+    public void setPaidAmount(BigDecimal paidAmount) {
+        this.paidAmount = paidAmount;
+    }
+
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public BigDecimal getPendingAmount() {
+        return pendingAmount;
+    }
+
+    public void setPendingAmount(BigDecimal pendingAmount) {
+        this.pendingAmount = pendingAmount;
     }
 
     public String getStatus() {
@@ -63,21 +78,5 @@ public class PaymentDTO {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public int getPatientProgramId() {
-        return patientProgramId;
-    }
-
-    public void setPatientProgramId(int patientProgramId) {
-        this.patientProgramId = patientProgramId;
-    }
-
-    public int getTherapySessionId() {
-        return therapySessionId;
-    }
-
-    public void setTherapySessionId(int therapySessionId) {
-        this.therapySessionId = therapySessionId;
     }
 }
