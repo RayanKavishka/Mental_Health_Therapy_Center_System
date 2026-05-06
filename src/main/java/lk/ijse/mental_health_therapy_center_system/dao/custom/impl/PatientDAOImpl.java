@@ -70,11 +70,19 @@ public class PatientDAOImpl implements PatientDAO {
     }
 
     @Override
+    public Patient get(int id) {
+        return null;
+    }
+
+    @Override
     public List<Patient> getAll() {
         Session session = FactoryConfiguration.getInstance().getSession();
 
         try {
-            return session.createQuery("from Patient", Patient.class).list();
+            return session.createQuery("from Patient", Patient.class)
+                    .setCacheable(true)
+                    .setCacheRegion("patientCache")
+                    .list();
 
         } catch (Exception e) {
             e.printStackTrace();

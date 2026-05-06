@@ -74,11 +74,19 @@ public class TherapyProgramDAOImpl implements TherapyProgramDAO {
     }
 
     @Override
+    public TherapyProgram get(int id) {
+        return null;
+    }
+
+    @Override
     public List<TherapyProgram> getAll() {
         Session session = FactoryConfiguration.getInstance().getSession();
 
         try {
-            return session.createQuery("from TherapyProgram", TherapyProgram.class).list();
+            return session.createQuery("from TherapyProgram", TherapyProgram.class)
+                    .setCacheable(true)
+                    .setCacheRegion("therapyProgramCache")
+                    .list();
 
         } catch (Exception e) {
             e.printStackTrace();

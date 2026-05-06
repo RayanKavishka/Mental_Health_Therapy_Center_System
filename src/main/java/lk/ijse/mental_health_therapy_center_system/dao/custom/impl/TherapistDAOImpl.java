@@ -70,11 +70,19 @@ public class TherapistDAOImpl implements TherapistDAO {
     }
 
     @Override
+    public Therapist get(int id) {
+        return null;
+    }
+
+    @Override
     public List<Therapist> getAll() {
         Session session = FactoryConfiguration.getInstance().getSession();
 
         try {
-            return session.createQuery("from Therapist", Therapist.class).list();
+            return session.createQuery("from Therapist", Therapist.class)
+                    .setCacheable(true)
+                    .setCacheRegion("therapistCache")
+                    .list();
 
         } catch(Exception e) {
             e.printStackTrace();

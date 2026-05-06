@@ -24,6 +24,11 @@ public class PatientProgramDAOImpl implements PatientProgramDAO {
     }
 
     @Override
+    public PatientProgram get(int id) {
+        return null;
+    }
+
+    @Override
     public List<PatientProgram> getAll() {
         return List.of();
     }

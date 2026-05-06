@@ -22,6 +22,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public User get(int id) {
+        return null;
+    }
+
+    @Override
     public List<User> getAll() {
         return List.of();
     }

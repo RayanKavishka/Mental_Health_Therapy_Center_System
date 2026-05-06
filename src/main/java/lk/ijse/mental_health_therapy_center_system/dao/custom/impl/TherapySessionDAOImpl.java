@@ -22,6 +22,11 @@ public class TherapySessionDAOImpl implements TherapySessionDAO {
     }
 
     @Override
+    public TherapySession get(int id) {
+        return null;
+    }
+
+    @Override
     public List<TherapySession> getAll() {
         return List.of();
     }

@@ -22,6 +22,11 @@ public class TherapistProgramDAOImpl implements TherapistProgramDAO {
     }
 
     @Override
+    public TherapistProgram get(int id) {
+        return null;
+    }
+
+    @Override
     public List<TherapistProgram> getAll() {
         return List.of();
     }

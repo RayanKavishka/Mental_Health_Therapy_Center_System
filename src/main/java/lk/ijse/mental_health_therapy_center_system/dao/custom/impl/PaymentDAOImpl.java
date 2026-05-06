@@ -1,7 +1,9 @@
 package lk.ijse.mental_health_therapy_center_system.dao.custom.impl;
 
+import lk.ijse.mental_health_therapy_center_system.config.FactoryConfiguration;
 import lk.ijse.mental_health_therapy_center_system.dao.custom.PaymentDAO;
 import lk.ijse.mental_health_therapy_center_system.entity.Payment;
+import org.hibernate.Session;
 
 import java.util.List;
 
@@ -22,7 +24,37 @@ public class PaymentDAOImpl implements PaymentDAO {
     }
 
     @Override
+    public Payment get(int id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+
+        try {
+           return session.get(Payment.class, id);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
     public List<Payment> getAll() {
-        return List.of();
+        Session session = FactoryConfiguration.getInstance().getSession();
+
+        try {
+            return session.createQuery("from Payment", Payment.class)
+                    .setCacheable(true)
+                    .setCacheRegion("paymentCache")
+                    .list();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+
+        } finally {
+            session.close();
+        }
     }
 }
