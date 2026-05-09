@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
+import lk.ijse.mental_health_therapy_center_system.AlertMode;
 import lk.ijse.mental_health_therapy_center_system.bo.BOFactory;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.PaymentBO;
 import lk.ijse.mental_health_therapy_center_system.dto.PaymentDTO;
@@ -49,6 +49,24 @@ public class PaymentController implements Initializable {
 
     @FXML
     private Label PendingTotal;
+
+    @FXML
+    private Label invoicePaymentId;
+
+    @FXML
+    private Label invoicePatientId;
+
+    @FXML
+    private Label invoiceDescription;
+
+    @FXML
+    private Label invoiceDate;
+
+    @FXML
+    private Label invoicePaidAmount;
+
+    @FXML
+    private Label invoicePendingAmount;
 
     @FXML
     private TextField paymentIdField;
@@ -114,15 +132,23 @@ public class PaymentController implements Initializable {
 
     @FXML
     private void printInvoice(ActionEvent event) {
+        String payId = paymentIdField.getText();
 
-    }
+        try {
+            PaymentDTO paymentDTO = paymentBO.getPayment(Integer.parseInt(payId));
 
-    @FXML
-    private void searchPaymentId(KeyEvent event) {
-        String paymentId = paymentIdField.getText();
+            invoicePaymentId.setText(payId);
+            invoicePatientId.setText(String.valueOf(paymentDTO.getPatientId()));
+            invoiceDescription.setText(paymentDTO.getName());
+            invoiceDate.setText(paymentDTO.getDate().toString());
+            invoicePaidAmount.setText(String.format("%.2f", paymentDTO.getPaidAmount()));
+            invoicePendingAmount.setText(String.format("%.2f", paymentDTO.getPendingAmount()));
 
-        if (event.getCode() == KeyCode.ENTER) {
-            PaymentDTO paymentDTO = paymentBO.getPayment(Integer.parseInt(paymentId));
+            AlertMode.info("Invoice is printed successfully");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertMode.error("Oops! This Payment is not found.");
         }
     }
 }

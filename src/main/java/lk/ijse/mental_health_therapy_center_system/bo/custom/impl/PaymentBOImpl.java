@@ -33,14 +33,20 @@ public class PaymentBOImpl implements PaymentBO {
     @Override
     public PaymentDTO getPayment(int paymentId) {
         Payment payment = paymentDAO.get(paymentId);
-        return new PaymentDTO(
-                payment.getId(),
-                payment.getName(),
-                payment.getPatientProgram().getPatient().getId(),
-                payment.getPaidAmount(),
-                payment.getDate(),
-                payment.getPendingAmount(),
-                payment.getStatus()
-        );
+
+        if (payment == null) {
+            throw new NullPointerException();
+
+        } else {
+            return new PaymentDTO(
+                    payment.getId(),
+                    payment.getName(),
+                    payment.getPatientProgram().getPatient().getId(),
+                    payment.getPaidAmount(),
+                    payment.getDate(),
+                    payment.getPendingAmount(),
+                    payment.getStatus()
+            );
+        }
     }
 }

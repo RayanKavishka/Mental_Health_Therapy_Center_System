@@ -55,7 +55,7 @@
                     <!-- Amount -->
                     <VBox spacing="5">
                         <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="Payment ID" />
-                        <TextField fx:id="paymentIdField" onKeyPressed="#searchPaymentId" prefHeight="40" promptText="Enter Payment ID" style="-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #444;" />
+                        <TextField fx:id="paymentIdField" prefHeight="40" promptText="Enter Payment ID" style="-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #444;" />
                     </VBox>
 
                     <!-- Payment Date -->
@@ -73,9 +73,9 @@
                             <HBox alignment="CENTER_LEFT">
                                 <Label style="-fx-font-family: 'Georgia'; -fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #FF204E;" text="SERENITY" />
                                 <Region HBox.hgrow="ALWAYS" />
-                                <Label style="-fx-font-size: 9px; -fx-text-fill: #555; -fx-letter-spacing: 2px;" text="INVOICE" />
+                                <Label style="-fx-font-size: 9px; -fx-text-fill: #ffffff; -fx-letter-spacing: 2px;" text="INVOICE" />
                             </HBox>
-                            <Label style="-fx-font-size: 10px; -fx-text-fill: #444;" text="Mental Health Therapy Center" />
+                            <Label style="-fx-font-size: 10px; -fx-text-fill: #ffffff;" text="Mental Health Therapy Center" />
                         </VBox>
 
                         <!-- Thin accent line -->
@@ -86,26 +86,26 @@
 
                             <!-- Payment ID Row -->
                             <HBox alignment="CENTER_LEFT">
-                                <Label minWidth="120" style="-fx-font-size: 10px; -fx-text-fill: #555; -fx-letter-spacing: 1.5px;" text="PAYMENT ID" />
-                                <Label fx:id="invoicePaymentId" style="-fx-font-size: 12px; -fx-text-fill: #ccc; -fx-font-weight: bold;" text="—" />
+                                <Label minWidth="120" style="-fx-font-size: 10px; -fx-text-fill: #ffffff; -fx-letter-spacing: 1.5px;" text="PAYMENT ID" />
+                                <Label fx:id="invoicePaymentId" style="-fx-font-size: 12px; -fx-text-fill: #ffffff; -fx-font-weight: bold;" text="—" />
                             </HBox>
 
                             <!-- Patient ID Row -->
                             <HBox alignment="CENTER_LEFT">
-                                <Label minWidth="120" style="-fx-font-size: 10px; -fx-text-fill: #555; -fx-letter-spacing: 1.5px;" text="PATIENT ID" />
-                                <Label fx:id="invoicePatientId" style="-fx-font-size: 12px; -fx-text-fill: #ccc;" text="—" />
+                                <Label minWidth="120" style="-fx-font-size: 10px; -fx-text-fill: #ffffff; -fx-letter-spacing: 1.5px;" text="PATIENT ID" />
+                                <Label fx:id="invoicePatientId" style="-fx-font-size: 12px; -fx-text-fill: #ffffff;" text="—" />
                             </HBox>
 
                             <!-- Description Row -->
                             <HBox alignment="CENTER_LEFT">
-                                <Label minWidth="120" style="-fx-font-size: 10px; -fx-text-fill: #555; -fx-letter-spacing: 1.5px;" text="DESCRIPTION" />
-                                <Label fx:id="invoiceDescription" wrapText="true" style="-fx-font-size: 12px; -fx-text-fill: #ccc;" text="—" />
+                                <Label minWidth="120" style="-fx-font-size: 10px; -fx-text-fill: #ffffff; -fx-letter-spacing: 1.5px;" text="DESCRIPTION" />
+                                <Label fx:id="invoiceDescription" style="-fx-font-size: 12px; -fx-text-fill: #ffffff;" text="—" wrapText="true" />
                             </HBox>
 
                             <!-- Date Row -->
                             <HBox alignment="CENTER_LEFT">
-                                <Label minWidth="120" style="-fx-font-size: 10px; -fx-text-fill: #555; -fx-letter-spacing: 1.5px;" text="DATE" />
-                                <Label fx:id="invoiceDate" style="-fx-font-size: 12px; -fx-text-fill: #ccc;" text="—" />
+                                <Label minWidth="120" style="-fx-font-size: 10px; -fx-text-fill: #ffffff; -fx-letter-spacing: 1.5px;" text="DATE" />
+                                <Label fx:id="invoiceDate" style="-fx-font-size: 12px; -fx-text-fill: #ffffff;" text="—" />
                             </HBox>
 
                         </VBox>
@@ -121,7 +121,7 @@
 
                             <!-- Paid Amount -->
                             <HBox alignment="CENTER_LEFT">
-                                <Label minWidth="120" style="-fx-font-size: 10px; -fx-text-fill: #555; -fx-letter-spacing: 1.5px;" text="PAID AMOUNT" />
+                                <Label minWidth="120" style="-fx-font-size: 10px; -fx-text-fill: #ffffff; -fx-letter-spacing: 1.5px;" text="PAID AMOUNT" />
                                 <HBox alignment="CENTER_LEFT" spacing="4">
                                     <Label style="-fx-font-size: 10px; -fx-text-fill: #4CAF50;" text="LKR" />
                                     <Label fx:id="invoicePaidAmount" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #4CAF50;" text="0.00" />
@@ -130,7 +130,7 @@
 
                             <!-- Pending Amount -->
                             <HBox alignment="CENTER_LEFT">
-                                <Label minWidth="120" style="-fx-font-size: 10px; -fx-text-fill: #555; -fx-letter-spacing: 1.5px;" text="PENDING" />
+                                <Label minWidth="120" style="-fx-font-size: 10px; -fx-text-fill: #ffffff; -fx-letter-spacing: 1.5px;" text="PENDING" />
                                 <HBox alignment="CENTER_LEFT" spacing="4">
                                     <Label style="-fx-font-size: 10px; -fx-text-fill: #FF204E;" text="LKR" />
                                     <Label fx:id="invoicePendingAmount" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #FF204E;" text="0.00" />
@@ -141,19 +141,9 @@
 
                         <!-- Invoice Footer -->
                         <VBox style="-fx-background-color: #0d0d0d; -fx-background-radius: 0 0 6 6; -fx-padding: 10 16;">
-                            <Label style="-fx-font-size: 9px; -fx-text-fill: #333; -fx-letter-spacing: 1px;" text="Thank you for choosing Serenity Therapy Center" />
+                            <Label style="-fx-font-size: 9px; -fx-text-fill: #ffffff; -fx-letter-spacing: 1px;" text="Thank you for choosing Serenity Therapy Center" />
                         </VBox>
 
-                    </VBox>
-                    <!-- END INVOICE SECTION -->
-
-                    <!-- Action Buttons -->
-                    <VBox spacing="10">
-                        <padding>
-                            <Insets top="10" />
-                        </padding>
-                        <HBox spacing="10" />
-                        <HBox spacing="10" />
                     </VBox>
 
                 </VBox>
