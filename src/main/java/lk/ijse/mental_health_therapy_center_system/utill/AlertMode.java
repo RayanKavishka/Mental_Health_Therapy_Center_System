@@ -1,4 +1,4 @@
-package lk.ijse.mental_health_therapy_center_system;
+package lk.ijse.mental_health_therapy_center_system.utill;
 
 import javafx.geometry.Pos;
 import javafx.util.Duration;

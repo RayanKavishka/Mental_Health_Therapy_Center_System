@@ -71,7 +71,14 @@ public class PatientDAOImpl implements PatientDAO {
 
     @Override
     public Patient get(int id) {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getCurrentSession();
+
+        try {
+            return session.get(Patient.class, id);
+
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -87,6 +94,21 @@ public class PatientDAOImpl implements PatientDAO {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public Patient getPatient(int patientId) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+
+        try {
+            return session.get(Patient.class, patientId);
+
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
 
         } finally {
             session.close();

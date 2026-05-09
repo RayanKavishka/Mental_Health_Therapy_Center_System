@@ -1,6 +1,8 @@
 package lk.ijse.mental_health_therapy_center_system.bo.custom.impl;
 
-import lk.ijse.mental_health_therapy_center_system.AlertMode;
+import lk.ijse.mental_health_therapy_center_system.dto.TherapistDTO;
+import lk.ijse.mental_health_therapy_center_system.entity.*;
+import lk.ijse.mental_health_therapy_center_system.utill.AlertMode;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.RegisterBO;
 import lk.ijse.mental_health_therapy_center_system.config.FactoryConfiguration;
 import lk.ijse.mental_health_therapy_center_system.dao.DAOFactory;
@@ -8,17 +10,12 @@ import lk.ijse.mental_health_therapy_center_system.dao.custom.PatientDAO;
 import lk.ijse.mental_health_therapy_center_system.dao.custom.PatientProgramDAO;
 import lk.ijse.mental_health_therapy_center_system.dto.PatientDTO;
 import lk.ijse.mental_health_therapy_center_system.dto.TherapyProgramDTO;
-import lk.ijse.mental_health_therapy_center_system.entity.Patient;
-import lk.ijse.mental_health_therapy_center_system.entity.PatientProgram;
-import lk.ijse.mental_health_therapy_center_system.entity.Payment;
-import lk.ijse.mental_health_therapy_center_system.entity.TherapyProgram;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.time.LocalDate;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class RegisterBOImpl implements RegisterBO {
@@ -64,7 +61,7 @@ public class RegisterBOImpl implements RegisterBO {
 
             } else if (payAmount.compareTo(therapyProgram.getFee()) == 0) {
                 payStatus = "Completed";
-                payment.setName("Payment Is Completed");
+                payment.setName("Payment is Completed");
 
             } else {
                 AlertMode.error("Something went wrong!");
@@ -123,5 +120,39 @@ public class RegisterBOImpl implements RegisterBO {
         }
 
         return patientDTOs;
+    }
+
+    @Override
+    public List<TherapyProgramDTO> getAllTherapyProgramsByPatient(int id) {
+        try {
+            List<TherapyProgramDTO> therapyProgramDTOs = new ArrayList<>();
+            for (TherapyProgram program : patientProgramDAO.getAllTherapyProgram(id)) {
+                therapyProgramDTOs.add(new TherapyProgramDTO(
+                        program.getId(),
+                        program.getName(),
+                        program.getDuration(),
+                        program.getFee(),
+                        program.getStatus()
+                ));
+            }
+
+            return therapyProgramDTOs;
+
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public PatientDTO getPatientById(int patientId) {
+        Patient patient = patientDAO.getPatient(patientId);
+        return new PatientDTO(
+                patient.getId(),
+                patient.getName(),
+                patient.getEmail(),
+                patient.getPhone(),
+                patient.getMedicalHistory(),
+                patient.getStatus()
+        );
     }
 }

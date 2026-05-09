@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface AssignmentBO extends SuperBO {
     List<TherapistDTO> getAllTherapist();
+    TherapistDTO getTherapistById(int therapistId);
     boolean saveTherapist(TherapistDTO therapistDTO, TherapyProgramDTO therapyProgramDTO);
     boolean updateTherapist(TherapistDTO therapistDTO);
     boolean deleteTherapist(int therapistId);

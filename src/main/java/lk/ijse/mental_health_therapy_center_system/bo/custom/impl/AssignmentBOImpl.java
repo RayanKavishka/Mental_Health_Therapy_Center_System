@@ -6,6 +6,7 @@ import lk.ijse.mental_health_therapy_center_system.dao.DAOFactory;
 import lk.ijse.mental_health_therapy_center_system.dao.custom.TherapistDAO;
 import lk.ijse.mental_health_therapy_center_system.dto.TherapistDTO;
 import lk.ijse.mental_health_therapy_center_system.dto.TherapyProgramDTO;
+import lk.ijse.mental_health_therapy_center_system.dto.TherapySessionDTO;
 import lk.ijse.mental_health_therapy_center_system.entity.Therapist;
 import lk.ijse.mental_health_therapy_center_system.entity.TherapistProgram;
 import lk.ijse.mental_health_therapy_center_system.entity.TherapyProgram;
@@ -87,5 +88,17 @@ public class AssignmentBOImpl implements AssignmentBO {
         }
 
         return therapistDTOS;
+    }
+
+    @Override
+    public TherapistDTO getTherapistById(int therapistId) {
+        Therapist therapist = therapistDAO.getTherapist(therapistId);
+        return new TherapistDTO(
+                therapist.getId(),
+                therapist.getName(),
+                therapist.getEmail(),
+                therapist.getAvailability(),
+                therapist.getStatus()
+        );
     }
 }

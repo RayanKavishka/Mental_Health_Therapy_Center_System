@@ -3,7 +3,9 @@ package lk.ijse.mental_health_therapy_center_system.bo.custom.impl;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.TherapyProgramBO;
 import lk.ijse.mental_health_therapy_center_system.dao.DAOFactory;
 import lk.ijse.mental_health_therapy_center_system.dao.custom.TherapyProgramDAO;
+import lk.ijse.mental_health_therapy_center_system.dto.PatientDTO;
 import lk.ijse.mental_health_therapy_center_system.dto.TherapyProgramDTO;
+import lk.ijse.mental_health_therapy_center_system.entity.Patient;
 import lk.ijse.mental_health_therapy_center_system.entity.TherapyProgram;
 
 import java.util.ArrayList;
@@ -52,5 +54,17 @@ public class TherapyProgramBOImpl implements TherapyProgramBO {
         }
 
         return therapyProgramDTOs;
+    }
+
+    @Override
+    public TherapyProgramDTO getProgramById(int programId) {
+        TherapyProgram therapyProgram = therapyProgramDAO.getProgram(programId);
+        return new TherapyProgramDTO(
+                therapyProgram.getId(),
+                therapyProgram.getName(),
+                therapyProgram.getDuration(),
+                therapyProgram.getFee(),
+                therapyProgram.getStatus()
+        );
     }
 }

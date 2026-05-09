@@ -25,6 +25,15 @@ public class TherapySessionDTO {
         this.therapyProgramId = therapyProgramId;
     }
 
+    public TherapySessionDTO(Date sessionDate, String timePeriod, String status, int patientId, int therapistId, int therapyProgramId) {
+        this.sessionDate = sessionDate;
+        this.timePeriod = timePeriod;
+        this.status = status;
+        this.patientId = patientId;
+        this.therapistId = therapistId;
+        this.therapyProgramId = therapyProgramId;
+    }
+
     public int getId() {
         return id;
     }

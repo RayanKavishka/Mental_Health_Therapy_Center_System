@@ -10,4 +10,5 @@ public interface TherapyProgramBO extends SuperBO {
     boolean updateTherapyProgram(TherapyProgramDTO therapyProgramDTO);
     boolean deleteTherapyProgram(int therapyId);
     List<TherapyProgramDTO> getAllTherapyPrograms();
+    TherapyProgramDTO getProgramById(int programId);
 }

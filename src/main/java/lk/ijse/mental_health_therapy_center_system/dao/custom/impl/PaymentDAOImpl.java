@@ -57,4 +57,23 @@ public class PaymentDAOImpl implements PaymentDAO {
             session.close();
         }
     }
+
+    @Override
+    public Payment getPaymentByPatientAndProgramIds(int patientId, int programId) {
+        Session session = FactoryConfiguration.getInstance().getCurrentSession();
+
+        try {
+            String hql = "FROM Payment p " +
+                    "WHERE p.patientProgram.patient.id = :patientId " +
+                    "AND p.patientProgram.therapyProgram.id = :programId";
+
+            return session.createQuery(hql, Payment.class)
+                    .setParameter("patientId", patientId)
+                    .setParameter("programId", programId)
+                    .uniqueResult();
+
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

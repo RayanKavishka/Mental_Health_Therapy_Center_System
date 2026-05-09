@@ -2,6 +2,7 @@ package lk.ijse.mental_health_therapy_center_system.dao.custom.impl;
 
 import lk.ijse.mental_health_therapy_center_system.config.FactoryConfiguration;
 import lk.ijse.mental_health_therapy_center_system.dao.custom.TherapistDAO;
+import lk.ijse.mental_health_therapy_center_system.entity.Patient;
 import lk.ijse.mental_health_therapy_center_system.entity.Therapist;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -71,7 +72,14 @@ public class TherapistDAOImpl implements TherapistDAO {
 
     @Override
     public Therapist get(int id) {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getCurrentSession();
+
+        try {
+            return session.get(Therapist.class, id);
+
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -87,6 +95,21 @@ public class TherapistDAOImpl implements TherapistDAO {
         } catch(Exception e) {
             e.printStackTrace();
             return null;
+
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public Therapist getTherapist(int therapistId) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+
+        try {
+            return session.get(Therapist.class, therapistId);
+
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
 
         } finally {
             session.close();

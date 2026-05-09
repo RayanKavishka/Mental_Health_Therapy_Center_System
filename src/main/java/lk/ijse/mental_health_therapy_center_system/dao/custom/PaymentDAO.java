@@ -4,4 +4,5 @@ import lk.ijse.mental_health_therapy_center_system.dao.CrudDAO;
 import lk.ijse.mental_health_therapy_center_system.entity.Payment;
 
 public interface PaymentDAO extends CrudDAO<Payment> {
+    Payment getPaymentByPatientAndProgramIds(int patientId, int programId);
 }

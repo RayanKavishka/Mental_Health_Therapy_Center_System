@@ -7,7 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import lk.ijse.mental_health_therapy_center_system.AlertMode;
+import lk.ijse.mental_health_therapy_center_system.utill.AlertMode;
 import lk.ijse.mental_health_therapy_center_system.bo.BOFactory;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.RegisterBO;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.TherapyProgramBO;
