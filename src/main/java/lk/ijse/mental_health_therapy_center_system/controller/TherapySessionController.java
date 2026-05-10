@@ -132,7 +132,15 @@ public class TherapySessionController implements Initializable {
 
     // Load session status after met the time period
     private void loadSessionStatus() {
+        try {
+            if(!therapySessionBO.checkSessionTimePeriod()) {
+                throw new RuntimeException();
+            }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertMode.error("Something went wrong!");
+        }
     }
 
     // Handle load available therapist for selected time period in related date
@@ -214,6 +222,7 @@ public class TherapySessionController implements Initializable {
         }
     }
 
+    // Handle update session
     @FXML
     private void updateSession() {
         String sessionId = therapySessionId.getText();
@@ -253,6 +262,7 @@ public class TherapySessionController implements Initializable {
         }
     }
 
+    // Handle cancel session
     @FXML
     private void cancelSession() {
         String sessionId = therapySessionId.getText();
@@ -283,6 +293,7 @@ public class TherapySessionController implements Initializable {
         sessionDatePicker.setValue(null);
     }
 
+    // Handle session table's row click
     @FXML
     private void handleTableRowClick() {
         TherapySessionDTO selectedRow = (TherapySessionDTO) therapySessionTable.getSelectionModel().getSelectedItem();

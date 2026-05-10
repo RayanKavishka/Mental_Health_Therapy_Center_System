@@ -156,4 +156,14 @@ public class TherapySessionBOImpl implements TherapySessionBO {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public boolean checkSessionTimePeriod() {
+        try {
+            return therapySessionDAO.checkTimePeriod();
+
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

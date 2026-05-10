@@ -1,6 +1,5 @@
 package lk.ijse.mental_health_therapy_center_system.dao.custom.impl;
 
-import com.mysql.cj.protocol.x.Notice;
 import lk.ijse.mental_health_therapy_center_system.config.FactoryConfiguration;
 import lk.ijse.mental_health_therapy_center_system.dao.custom.TherapySessionDAO;
 import lk.ijse.mental_health_therapy_center_system.entity.Therapist;
@@ -9,6 +8,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -113,6 +115,47 @@ public class TherapySessionDAOImpl implements TherapySessionDAO {
             return query.list();
 
         } catch (Exception e) {
+            throw new RuntimeException(e);
+
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean checkTimePeriod() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            List<TherapySession> therapySessions = session
+                    .createQuery("from TherapySession", TherapySession.class)
+                    .setCacheable(true)
+                    .setCacheRegion("therapySessionCache")
+                    .list();
+
+            LocalDate today = LocalDate.now();
+            for (TherapySession therapySession : therapySessions) {
+                LocalDate sessionDate = therapySession.getSessionDate()
+                        .toInstant()
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDate();
+
+                if (sessionDate.equals(today)) {
+                    String[] timePeriod = therapySession.getTimePeriod().split("-");
+                    String endTimeString = timePeriod[1].trim();
+                    LocalTime endTime = LocalTime.parse(endTimeString);
+
+                    if (endTime.equals(LocalTime.now().withSecond(0).withNano(0))) {
+                        therapySession.setStatus("Completed");
+                    }
+                }
+            }
+
+            transaction.commit();
+            return true;
+
+        } catch (RuntimeException e) {
             throw new RuntimeException(e);
 
         } finally {

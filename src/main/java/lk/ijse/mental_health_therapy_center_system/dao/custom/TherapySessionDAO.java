@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface TherapySessionDAO extends CrudDAO<TherapySession> {
     List<Therapist> getAllBySchedule(String timePeriod, Date date);
+    boolean checkTimePeriod();
 }

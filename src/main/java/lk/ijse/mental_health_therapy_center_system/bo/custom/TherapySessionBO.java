@@ -13,4 +13,5 @@ public interface TherapySessionBO extends SuperBO {
     boolean bookTherapySession(TherapySessionDTO therapySessionDTO);
     boolean updateTherapySession(TherapySessionDTO therapySessionDTO);
     boolean cancelTherapySession(int therapySessionId);
+    boolean checkSessionTimePeriod();
 }
