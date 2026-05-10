@@ -12,6 +12,7 @@ import org.hibernate.Transaction;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,9 +38,16 @@ public class TherapySessionBOImpl implements TherapySessionBO {
         List<TherapySessionDTO> therapySessionDTOs = new ArrayList<>();
         try {
             for (TherapySession therapySession : therapySessionDAO.getAll()) {
+                LocalDate localDate = therapySession.getSessionDate()
+                        .toInstant()
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDate();
+
+                Date date = java.sql.Date.valueOf(localDate);
+
                 therapySessionDTOs.add(new TherapySessionDTO(
                         therapySession.getId(),
-                        therapySession.getSessionDate(),
+                        date,
                         therapySession.getTimePeriod(),
                         therapySession.getStatus(),
                         therapySession.getPatient().getId(),
@@ -165,5 +173,22 @@ public class TherapySessionBOImpl implements TherapySessionBO {
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public int getAllTodaySessionCount() {
+        int sessionCount = 0;
+        LocalDate today = LocalDate.now();
+
+        for (TherapySessionDTO therapySessionDTO : getAllTherapySession()) {
+            java.sql.Date sessionDate = new java.sql.Date(therapySessionDTO.getSessionDate().getTime());
+            LocalDate localSessionDate = sessionDate.toLocalDate();
+
+            if (localSessionDate.equals(today)) {
+                sessionCount++;
+            }
+        }
+
+        return sessionCount;
     }
 }

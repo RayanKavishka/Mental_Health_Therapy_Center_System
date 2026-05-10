@@ -1,5 +1,6 @@
 package lk.ijse.mental_health_therapy_center_system.controller;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,22 +9,23 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import lk.ijse.mental_health_therapy_center_system.bo.BOFactory;
-import lk.ijse.mental_health_therapy_center_system.bo.custom.AssignmentBO;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.RegisterBO;
-import lk.ijse.mental_health_therapy_center_system.bo.custom.TherapyProgramBO;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.TherapySessionBO;
 import lk.ijse.mental_health_therapy_center_system.dto.PatientDTO;
 import lk.ijse.mental_health_therapy_center_system.dto.TherapistDTO;
 import lk.ijse.mental_health_therapy_center_system.dto.TherapyProgramDTO;
 import lk.ijse.mental_health_therapy_center_system.dto.TherapySessionDTO;
-import lk.ijse.mental_health_therapy_center_system.utill.AlertMode;
+import lk.ijse.mental_health_therapy_center_system.util.AlertMode;
+import lk.ijse.mental_health_therapy_center_system.util.NavigationUtil;
 
 import java.net.URL;
-import java.util.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class TherapySessionController implements Initializable {
     @FXML
@@ -71,12 +73,6 @@ public class TherapySessionController implements Initializable {
     private final RegisterBO registerBO = (RegisterBO) BOFactory.getInstance().
             getBO(BOFactory.BOType.REGISTER);
 
-    private final TherapyProgramBO therapyProgramBO = (TherapyProgramBO) BOFactory.getInstance().
-            getBO(BOFactory.BOType.THERAPY_PROGRAM);
-
-    private final AssignmentBO assignmentBO = (AssignmentBO) BOFactory.getInstance().
-            getBO(BOFactory.BOType.ASSIGNMENT);
-
     private final TherapySessionBO therapySessionBO = (TherapySessionBO) BOFactory.getInstance().
             getBO(BOFactory.BOType.THERAPY_SESSION);
 
@@ -112,7 +108,7 @@ public class TherapySessionController implements Initializable {
             );
         }
 
-        loadSessionStatus();
+        startSessionStatusPoller();
     }
 
     // Load therapy session table
@@ -128,6 +124,18 @@ public class TherapySessionController implements Initializable {
             e.printStackTrace();
             AlertMode.error("Something went wrong!");
         }
+    }
+
+    // Load these per One Minute
+    private void startSessionStatusPoller() {
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+        scheduler.scheduleAtFixedRate(() -> {
+            Platform.runLater(this::loadSessionStatus);
+        }, 0, 1, TimeUnit.MINUTES);
+
+        scheduler.scheduleAtFixedRate(() -> {
+            Platform.runLater(this::loadTherapySessionTable);
+        }, 0, 1, TimeUnit.MINUTES);
     }
 
     // Load session status after met the time period
@@ -332,5 +340,11 @@ public class TherapySessionController implements Initializable {
     @FXML
     private void searchTherapySession() {
 
+    }
+
+    // Navigate to Dashboard
+    @FXML
+    private void navigateDashboard(MouseEvent event) {
+        NavigationUtil.navigate(event, "Dashboard.fxml");
     }
 }

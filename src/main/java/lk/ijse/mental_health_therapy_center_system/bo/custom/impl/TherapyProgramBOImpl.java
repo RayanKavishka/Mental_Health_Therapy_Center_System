@@ -67,4 +67,16 @@ public class TherapyProgramBOImpl implements TherapyProgramBO {
                 therapyProgram.getStatus()
         );
     }
+
+    @Override
+    public int getAllTherapyProgramCount() {
+        int therapyProgramCount = 0;
+        for (TherapyProgramDTO therapyProgramDTO : getAllTherapyPrograms()) {
+            if (therapyProgramDTO.getStatus().equals("Active")) {
+                therapyProgramCount++;
+            }
+        }
+
+        return therapyProgramCount;
+    }
 }

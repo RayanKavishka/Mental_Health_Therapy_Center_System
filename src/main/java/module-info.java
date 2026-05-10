@@ -18,6 +18,6 @@ module lk.ijse.mental_health_therapy_center_system {
 
     exports lk.ijse.mental_health_therapy_center_system;
     exports lk.ijse.mental_health_therapy_center_system.controller;
-    exports lk.ijse.mental_health_therapy_center_system.utill;
-    opens lk.ijse.mental_health_therapy_center_system.utill to javafx.fxml;
+    exports lk.ijse.mental_health_therapy_center_system.util;
+    opens lk.ijse.mental_health_therapy_center_system.util to javafx.fxml;
 }

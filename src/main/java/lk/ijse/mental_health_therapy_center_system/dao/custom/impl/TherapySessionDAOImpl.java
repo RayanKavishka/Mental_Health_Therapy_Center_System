@@ -130,11 +130,11 @@ public class TherapySessionDAOImpl implements TherapySessionDAO {
         try {
             List<TherapySession> therapySessions = session
                     .createQuery("from TherapySession", TherapySession.class)
-                    .setCacheable(true)
-                    .setCacheRegion("therapySessionCache")
                     .list();
 
             LocalDate today = LocalDate.now();
+            LocalTime now = LocalTime.now();
+
             for (TherapySession therapySession : therapySessions) {
                 LocalDate sessionDate = therapySession.getSessionDate()
                         .toInstant()
@@ -143,19 +143,24 @@ public class TherapySessionDAOImpl implements TherapySessionDAO {
 
                 if (sessionDate.equals(today)) {
                     String[] timePeriod = therapySession.getTimePeriod().split("-");
-                    String endTimeString = timePeriod[1].trim();
-                    LocalTime endTime = LocalTime.parse(endTimeString);
+                    LocalTime endTime = LocalTime.parse(timePeriod[1].trim());
 
-                    if (endTime.equals(LocalTime.now().withSecond(0).withNano(0))) {
+                    boolean isActiveStatus = therapySession.getStatus().equals("Scheduled")
+                            || therapySession.getStatus().equals("Rescheduled");
+
+                    if (now.isAfter(endTime) && isActiveStatus) {
                         therapySession.setStatus("Completed");
+                        session.merge(therapySession);
                     }
                 }
             }
 
+            session.flush();
             transaction.commit();
             return true;
 
         } catch (RuntimeException e) {
+            transaction.rollback();
             throw new RuntimeException(e);
 
         } finally {

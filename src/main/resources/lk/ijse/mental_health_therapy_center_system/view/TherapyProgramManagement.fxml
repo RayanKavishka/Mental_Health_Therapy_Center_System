@@ -26,7 +26,7 @@
             <Label style="-fx-font-size: 10px; -fx-text-fill: #FF204E; -fx-background-color: #1a0008; -fx-border-color: #FF204E; -fx-border-width: 1; -fx-border-radius: 3; -fx-background-radius: 3; -fx-padding: 4 10; -fx-font-weight: bold;" text="ADMIN ONLY">
                 <HBox.margin><Insets right="16" /></HBox.margin>
             </Label>
-            <Button fx:id="goToDashboardBtn" style="-fx-background-color: transparent; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 3; -fx-text-fill: #777; -fx-font-size: 12px; -fx-cursor: hand; -fx-padding: 6 18;" text="← Dashboard" />
+            <Button fx:id="goToDashboardBtn" onMouseClicked="#navigateDashboard" style="-fx-background-color: transparent; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 3; -fx-text-fill: #777; -fx-font-size: 12px; -fx-cursor: hand; -fx-padding: 6 18;" text="← Dashboard" />
         </HBox>
     </top>
 

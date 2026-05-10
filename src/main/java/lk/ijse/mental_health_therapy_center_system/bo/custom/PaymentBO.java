@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface PaymentBO extends SuperBO {
     List<PaymentDTO> getAllPayment();
+    double getAllRevenue();
     PaymentDTO getPayment(int paymentId);
 }

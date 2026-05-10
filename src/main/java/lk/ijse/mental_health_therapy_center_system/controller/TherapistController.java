@@ -10,12 +10,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import lk.ijse.mental_health_therapy_center_system.utill.AlertMode;
+import lk.ijse.mental_health_therapy_center_system.util.AlertMode;
 import lk.ijse.mental_health_therapy_center_system.bo.BOFactory;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.AssignmentBO;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.TherapyProgramBO;
 import lk.ijse.mental_health_therapy_center_system.dto.TherapistDTO;
 import lk.ijse.mental_health_therapy_center_system.dto.TherapyProgramDTO;
+import lk.ijse.mental_health_therapy_center_system.util.NavigationUtil;
 
 import java.net.URL;
 import java.util.List;
@@ -212,5 +213,11 @@ public class TherapistController implements Initializable {
         therapistEmail.setText("");
         therapistAvailability.getSelectionModel().clearSelection();
         therapyProgramsComboBox.getSelectionModel().clearSelection();
+    }
+
+    // Navigate to Dashboard
+    @FXML
+    private void navigateDashboard(MouseEvent event) {
+        NavigationUtil.navigate(event, "Dashboard.fxml");
     }
 }

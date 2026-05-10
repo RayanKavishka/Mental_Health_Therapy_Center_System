@@ -10,10 +10,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import lk.ijse.mental_health_therapy_center_system.utill.AlertMode;
+import lk.ijse.mental_health_therapy_center_system.util.AlertMode;
 import lk.ijse.mental_health_therapy_center_system.bo.BOFactory;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.TherapyProgramBO;
 import lk.ijse.mental_health_therapy_center_system.dto.TherapyProgramDTO;
+import lk.ijse.mental_health_therapy_center_system.util.NavigationUtil;
 
 import java.math.BigDecimal;
 import java.net.URL;
@@ -37,12 +38,6 @@ public class TherapyProgramController implements Initializable {
     private TableColumn<?, ?> colStatus;
 
     @FXML
-    private Button goToDashboardBtn;
-
-    @FXML
-    private Button therapyDeleteBtn;
-
-    @FXML
     private TextField therapyDuration;
 
     @FXML
@@ -58,19 +53,7 @@ public class TherapyProgramController implements Initializable {
     private TextField therapyProgramSearch;
 
     @FXML
-    private Button therapyProgramSearchBtn;
-
-    @FXML
     private TableView<TherapyProgramDTO> therapyProgramTable;
-
-    @FXML
-    private Button therapyResetBtn;
-
-    @FXML
-    private Button therapySaveBtn;
-
-    @FXML
-    private Button therapyUpdateBtn;
 
     private static final String NAME_REGEX = "^[A-Z][a-zA-Z '.-]*[A-Za-z][^-]$";
     private static final String DURATION_REGEX = "^\\d+\\s+(week|weeks|month|months|year|years)$";
@@ -207,5 +190,11 @@ public class TherapyProgramController implements Initializable {
         therapyName.setText("");
         therapyDuration.setText("");
         therapyFee.setText("");
+    }
+
+    // Navigate to Dashboard
+    @FXML
+    private void navigateDashboard(MouseEvent event) {
+        NavigationUtil.navigate(event, "Dashboard.fxml");
     }
 }

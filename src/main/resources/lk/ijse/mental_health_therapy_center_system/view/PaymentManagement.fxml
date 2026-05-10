@@ -23,7 +23,7 @@
             <Label style="-fx-font-family: 'Georgia'; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #FF204E;" text="SERENITY" />
             <Label style="-fx-font-size: 13px; -fx-text-fill: #777;" text="  |  Payment Management" />
             <Region HBox.hgrow="ALWAYS" />
-            <Button style="-fx-background-color: transparent; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 3; -fx-text-fill: #777; -fx-font-size: 12px; -fx-cursor: hand; -fx-padding: 6 18;" text="← Dashboard" />
+            <Button onMouseClicked="#navigateDashboard" style="-fx-background-color: transparent; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 3; -fx-text-fill: #777; -fx-font-size: 12px; -fx-cursor: hand; -fx-padding: 6 18;" text="← Dashboard" />
         </HBox>
     </top>
 

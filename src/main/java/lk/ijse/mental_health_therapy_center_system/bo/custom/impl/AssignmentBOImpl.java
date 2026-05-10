@@ -75,6 +75,19 @@ public class AssignmentBOImpl implements AssignmentBO {
     }
 
     @Override
+    public int getAllTherapistCount() {
+        int therapistsCount = 0;
+
+        for (TherapistDTO therapistDTO : getAllTherapist()) {
+            if (therapistDTO.getStatus().equals("Active")) {
+                therapistsCount++;
+            }
+        }
+
+         return therapistsCount;
+    }
+
+    @Override
     public List<TherapistDTO> getAllTherapist() {
         List<TherapistDTO> therapistDTOS = new ArrayList<>();
         for (Therapist therapist : therapistDAO.getAll()) {

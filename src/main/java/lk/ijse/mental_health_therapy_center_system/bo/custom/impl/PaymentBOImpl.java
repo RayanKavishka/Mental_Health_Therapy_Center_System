@@ -6,6 +6,7 @@ import lk.ijse.mental_health_therapy_center_system.dao.custom.PaymentDAO;
 import lk.ijse.mental_health_therapy_center_system.dto.PaymentDTO;
 import lk.ijse.mental_health_therapy_center_system.entity.Payment;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,16 @@ public class PaymentBOImpl implements PaymentBO {
         }
 
         return paymentDTOs;
+    }
+
+    @Override
+    public double getAllRevenue() {
+        double revenue = 0;
+        for (PaymentDTO paymentDTO : getAllPayment()) {
+            revenue += paymentDTO.getPaidAmount().doubleValue();
+        }
+
+        return revenue;
     }
 
     @Override

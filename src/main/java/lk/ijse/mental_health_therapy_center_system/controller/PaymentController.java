@@ -10,10 +10,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lk.ijse.mental_health_therapy_center_system.utill.AlertMode;
+import javafx.scene.input.MouseEvent;
+import lk.ijse.mental_health_therapy_center_system.util.AlertMode;
 import lk.ijse.mental_health_therapy_center_system.bo.BOFactory;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.PaymentBO;
 import lk.ijse.mental_health_therapy_center_system.dto.PaymentDTO;
+import lk.ijse.mental_health_therapy_center_system.util.NavigationUtil;
 
 import java.math.BigDecimal;
 import java.net.URL;
@@ -148,5 +150,11 @@ public class PaymentController implements Initializable {
             e.printStackTrace();
             AlertMode.error("Oops! This Payment is not found.");
         }
+    }
+
+    // Navigate to Dashboard
+    @FXML
+    private void navigateDashboard(MouseEvent event) {
+        NavigationUtil.navigate(event, "Dashboard.fxml");
     }
 }

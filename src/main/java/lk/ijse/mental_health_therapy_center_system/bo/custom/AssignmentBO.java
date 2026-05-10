@@ -12,4 +12,5 @@ public interface AssignmentBO extends SuperBO {
     boolean saveTherapist(TherapistDTO therapistDTO, TherapyProgramDTO therapyProgramDTO);
     boolean updateTherapist(TherapistDTO therapistDTO);
     boolean deleteTherapist(int therapistId);
+    int getAllTherapistCount();
 }

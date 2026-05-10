@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.SVGPath?>
+
+<BorderPane prefHeight="720" prefWidth="1200" style="-fx-background-color: #0a0a0f;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.mental_health_therapy_center_system.controller.DashboardController">
+
+    <!-- ═══════════════════════════════════════════════════ TOP NAV BAR -->
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="56" style="-fx-background-color: #101018;                      -fx-border-color: #5D0E41;                      -fx-border-width: 0 0 1.5 0;">
+            <padding><Insets left="28" right="28" /></padding>
+
+            <!-- Brand wordmark -->
+            <Label style="-fx-font-family: 'Georgia'; -fx-font-size: 18px;                           -fx-font-weight: bold; -fx-text-fill: #FF204E;                           -fx-letter-spacing: 2px;" text="SERENITY" />
+            <Label style="-fx-font-size: 14px; -fx-text-fill: #333344;" text="  |  " />
+            <Label style="-fx-font-size: 12px; -fx-text-fill: #d0d0e0;" text="Admin Portal">
+                <HBox.margin><Insets right="40" /></HBox.margin>
+            </Label>
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <!-- Admin badge -->
+            <HBox alignment="CENTER_LEFT" spacing="6">
+                <HBox.margin><Insets right="16" /></HBox.margin>
+                <Circle fill="#FF204E" radius="4" />
+                <Label style="-fx-font-size: 11px; -fx-text-fill: #FF204E;                               -fx-font-weight: bold; -fx-letter-spacing: 1px;" text="ADMIN" />
+            </HBox>
+
+            <!-- Logout button with SVG icon -->
+            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="128.0" spacing="0" style="-fx-background-color: transparent; -fx-border-color: #A0153E; -fx-border-radius: 100; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-cursor: hand; -fx-padding: 6 14;">
+                <SVGPath content="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2M9 12h12m-3 -3l3 3l-3 3" fill="#A0153E" scaleX="0.65" scaleY="0.65">
+                    <HBox.margin><Insets right="6" /></HBox.margin>
+                </SVGPath>
+                <Label style="-fx-font-size: 12px; -fx-text-fill: #d0d0e0;                               -fx-background-color: transparent;" text="Logout" />
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- ═══════════════════════════════════════════════════ MAIN CONTENT -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background: #0a0a0f; -fx-background-color: #0a0a0f;                            -fx-border-width: 0;">
+            <VBox spacing="0">
+                <padding><Insets bottom="40" left="32" right="32" top="32" /></padding>
+
+                <!-- ── Page Header ──────────────────────────────────────── -->
+                <VBox spacing="5">
+                    <VBox.margin><Insets bottom="26" /></VBox.margin>
+                    <Label style="-fx-font-family: 'Georgia'; -fx-font-size: 26px;                                   -fx-font-weight: bold; -fx-text-fill: #f0f0f8;" text="Admin Dashboard" />
+                    <Label style="-fx-font-size: 13px; -fx-text-fill: #d0d0e0;" text="Overview of system activity and quick access" />
+                </VBox>
+
+                <!-- ── Stats Row ────────────────────────────────────────── -->
+                <HBox spacing="16">
+                    <HBox.margin><Insets bottom="32" /></HBox.margin>
+
+                    <!-- ▸ Therapists stat card -->
+                    <VBox prefHeight="130" prefWidth="200" style="-fx-background-color: #101018;                                  -fx-border-color: #5D0E41; -fx-border-width: 0 0 0 3;                                  -fx-background-radius: 0 8 8 0; -fx-border-radius: 0 8 8 0;">
+                        <padding><Insets bottom="18" left="20" right="16" top="18" /></padding>
+                        <!-- stethoscope icon -->
+                        <StackPane alignment="CENTER" prefHeight="36" prefWidth="36" style="-fx-background-color: #1e0f1a; -fx-background-radius: 8;">
+                            <VBox.margin><Insets bottom="10" /></VBox.margin>
+                            <SVGPath content="M4.5 13a7.5 7.5 0 0 0 7.5 7.5h1a7.5 7.5 0 0 0 7.5 -7.5v-3M4.5 10v-4.5a3 3 0 0 1 6 0v5a3 3 0 0 0 6 0v-1.5M19 11m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" fill="#A0153E" scaleX="0.68" scaleY="0.68" />
+                        </StackPane>
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E;                                       -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="THERAPISTS" />
+                        <Label fx:id="totalTherapists" style="-fx-font-size: 30px; -fx-font-weight: bold;                                       -fx-text-fill: #f0f0f8;" text="—" />
+                        <Label style="-fx-font-size: 11px; -fx-text-fill: #d0d0e0;" text="Active" />
+                  <HBox.margin>
+                     <Insets left="57.0" />
+                  </HBox.margin>
+                    </VBox>
+
+                    <!-- ▸ Programs stat card -->
+                    <VBox prefHeight="130" prefWidth="200" style="-fx-background-color: #101018;                                  -fx-border-color: #A0153E; -fx-border-width: 0 0 0 3;                                  -fx-background-radius: 0 8 8 0; -fx-border-radius: 0 8 8 0;">
+                        <padding><Insets bottom="18" left="20" right="16" top="18" /></padding>
+                        <!-- clipboard-list icon -->
+                        <StackPane alignment="CENTER" prefHeight="36" prefWidth="36" style="-fx-background-color: #1e0f1a; -fx-background-radius: 8;">
+                            <VBox.margin><Insets bottom="10" /></VBox.margin>
+                            <SVGPath content="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2M9 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2v0M9 12h6M9 16h4" fill="#A0153E" scaleX="0.68" scaleY="0.68" />
+                        </StackPane>
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E;                                       -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="PROGRAMS" />
+                        <Label fx:id="totalTherapyPrograms" style="-fx-font-size: 30px; -fx-font-weight: bold;                                       -fx-text-fill: #f0f0f8;" text="—" />
+                        <Label style="-fx-font-size: 11px; -fx-text-fill: #d0d0e0;" text="Active" />
+                  <HBox.margin>
+                     <Insets left="57.0" />
+                  </HBox.margin>
+                    </VBox>
+
+                    <!-- ▸ Sessions Today stat card -->
+                    <VBox prefHeight="130" prefWidth="200" style="-fx-background-color: #101018;                                  -fx-border-color: #FF204E; -fx-border-width: 0 0 0 3;                                  -fx-background-radius: 0 8 8 0; -fx-border-radius: 0 8 8 0;">
+                        <padding><Insets bottom="18" left="20" right="16" top="18" /></padding>
+                        <!-- calendar-event icon -->
+                        <StackPane alignment="CENTER" prefHeight="36" prefWidth="36" style="-fx-background-color: #1e0f1a; -fx-background-radius: 8;">
+                            <VBox.margin><Insets bottom="10" /></VBox.margin>
+                            <SVGPath content="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2M16 3.13a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0 -3 -3.85" fill="#FF204E" scaleX="0.68" scaleY="0.68" />
+                        </StackPane>
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E;                                       -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="SESSIONS TODAY" />
+                        <Label fx:id="todaySessions" style="-fx-font-size: 30px; -fx-font-weight: bold;                                       -fx-text-fill: #f0f0f8;" text="—" />
+                        <Label style="-fx-font-size: 11px; -fx-text-fill: #d0d0e0;" text="Scheduled" />
+                  <HBox.margin>
+                     <Insets left="57.0" />
+                  </HBox.margin>
+                    </VBox>
+
+                    <!-- ▸ Revenue stat card -->
+                    <VBox prefHeight="130" prefWidth="200" style="-fx-background-color: #101018;                                  -fx-border-color: #5D0E41; -fx-border-width: 0 0 0 3;                                  -fx-background-radius: 0 8 8 0; -fx-border-radius: 0 8 8 0;">
+                        <padding><Insets bottom="18" left="20" right="16" top="18" /></padding>
+                        <!-- currency-dollar icon -->
+                        <StackPane alignment="CENTER" prefHeight="36" prefWidth="36" style="-fx-background-color: #1e0f1a; -fx-background-radius: 8;">
+                            <VBox.margin><Insets bottom="10" /></VBox.margin>
+                            <SVGPath content="M12 3v18M17 7h-2.5a2.5 2.5 0 0 0 0 5h1a2.5 2.5 0 0 1 0 5H13M7 7a5 5 0 0 1 5 -5M17 17a5 5 0 0 1 -5 5M12 3m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" fill="#A0153E" scaleX="0.68" scaleY="0.68" />
+                        </StackPane>
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E;                                       -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="REVENUE" />
+                        <Label fx:id="TotalRevenues" style="-fx-font-size: 30px; -fx-font-weight: bold;                                       -fx-text-fill: #f0f0f8;" text="—" />
+                        <Label style="-fx-font-size: 11px; -fx-text-fill: #d0d0e0;" text="All Revenue" />
+                  <HBox.margin>
+                     <Insets left="57.0" />
+                  </HBox.margin>
+                    </VBox>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+
+                </HBox>
+
+                <!-- ── Section Label: Quick Access ───────────────────── -->
+                <Label style="-fx-font-size: 10px; -fx-text-fill: #d0d0e0;                               -fx-letter-spacing: 3px; -fx-font-weight: bold;" text="NAVIGATIONS">
+                    <VBox.margin><Insets bottom="14.0" top="66.0" /></VBox.margin>
+                </Label>
+
+                <!-- ── Quick Access Cards ─────────────────────────────── -->
+                <HBox spacing="100.0">
+                    <HBox.margin><Insets bottom="28" /></HBox.margin>
+
+                    <!-- ▸ Manage Therapists quick card -->
+                    <VBox onMouseClicked="#navigateTherapistsManagement" prefHeight="88" prefWidth="310.0" style="-fx-background-color: #101018; -fx-background-radius: 10;                                  -fx-border-color: #1c1c28; -fx-border-radius: 10;                                  -fx-border-width: 1; -fx-cursor: hand;">
+                        <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
+                        <HBox alignment="CENTER_LEFT" spacing="14">
+                            <!-- users icon -->
+                            <StackPane alignment="CENTER" prefHeight="42" prefWidth="42" style="-fx-background-color: #1e0f1a; -fx-background-radius: 10;">
+                                <SVGPath content="M12 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0M4 21v-1a5 5 0 0 1 5 -5h6a5 5 0 0 1 5 5v1M9 11v4M15 11v4M9 15h6" fill="#FF204E" scaleX="0.75" scaleY="0.75" />
+                            </StackPane>
+                            <VBox spacing="4">
+                                <Label style="-fx-font-size: 14px; -fx-text-fill: #f0f0f8;                                               -fx-font-weight: bold;" text="Manage Therapists" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #d0d0e0;" text="Add · Edit · Remove" />
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E;                                       -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="Admin Only" />
+                            </VBox>
+                            <Region HBox.hgrow="ALWAYS" />
+                            <!-- arrow-right icon -->
+                            <SVGPath content="M5 12h14M15 16l4 -4l-4 -4" fill="#A0153E" scaleX="0.7" scaleY="0.7" />
+                        </HBox>
+                    </VBox>
+
+                    <!-- ▸ Therapy Programs quick card -->
+                    <VBox onMouseClicked="#navigateTherapyProgramManagement" prefHeight="88.0" prefWidth="310.0" style="-fx-background-color: #101018; -fx-background-radius: 10;                                  -fx-border-color: #1c1c28; -fx-border-radius: 10;                                  -fx-border-width: 1; -fx-cursor: hand;">
+                        <padding><Insets bottom="20.0" left="20.0" right="20.0" top="20.0" /></padding>
+                        <HBox alignment="CENTER_LEFT" spacing="14">
+                            <!-- notes / document icon -->
+                            <StackPane alignment="CENTER" prefHeight="42" prefWidth="42" style="-fx-background-color: #1e0f1a; -fx-background-radius: 10;">
+                                <SVGPath content="M5 5a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2zM9 7h6M9 11h6M9 15h4" fill="#FF204E" scaleX="0.75" scaleY="0.75" />
+                            </StackPane>
+                            <VBox spacing="4">
+                                <Label style="-fx-font-size: 14px; -fx-text-fill: #f0f0f8;                                               -fx-font-weight: bold;" text="Therapy Programs" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #d0d0e0;" text="Create · Modify · Remove" />
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E;                                       -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="Admin Only" />
+                            </VBox>
+                            <Region HBox.hgrow="ALWAYS" />
+                            <SVGPath content="M5 12h14M15 16l4 -4l-4 -4" fill="#A0153E" scaleX="0.7" scaleY="0.7" />
+                        </HBox>
+                    </VBox>
+
+                    <!-- ▸ Reports & Analytics quick card -->
+                    <VBox onMouseClicked="#navigatePaymentsManagement" prefHeight="88" prefWidth="310.0" style="-fx-background-color: #101018; -fx-background-radius: 10;                                  -fx-border-color: #1c1c28; -fx-border-radius: 10;                                  -fx-border-width: 1; -fx-cursor: hand;">
+                        <padding><Insets bottom="20.0" left="20.0" right="20.0" top="20.0" /></padding>
+                        <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="239.0" spacing="14">
+                            <!-- chart-bar icon -->
+                            <StackPane alignment="CENTER" prefHeight="42" prefWidth="42" style="-fx-background-color: #1e0f1a; -fx-background-radius: 10;">
+                                <SVGPath content="M3 12h4v9h-4zM10 7h4v14h-4zM17 4h4v17h-4zM3 21h18" fill="#FF204E" scaleX="0.75" scaleY="0.75" />
+                            </StackPane>
+                            <VBox spacing="4">
+                                <Label style="-fx-font-size: 14px; -fx-text-fill: #f0f0f8;                                               -fx-font-weight: bold;" text="Payments" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #d0d0e0;" text="Payments · Invoice" />
+                            </VBox>
+                            <Region HBox.hgrow="ALWAYS" />
+                            <SVGPath content="M5 12h14M15 16l4 -4l-4 -4" fill="#A0153E" scaleX="0.7" scaleY="0.7" />
+                        </HBox>
+                    </VBox>
+
+                </HBox>
+            <HBox layoutX="42.0" layoutY="277.0" spacing="100.0">
+               <children>
+                  <VBox onMouseClicked="#navigatePatientsManagement" prefHeight="88" prefWidth="310.0" style="-fx-background-color: #101018; -fx-background-radius: 10;                                  -fx-border-color: #1c1c28; -fx-border-radius: 10;                                  -fx-border-width: 1; -fx-cursor: hand;">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="14">
+                           <children>
+                              <StackPane alignment="CENTER" prefHeight="42" prefWidth="42" style="-fx-background-color: #1e0f1a; -fx-background-radius: 10;">
+                                 <children>
+                                    <SVGPath content="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2M16 3.13a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0 -3 -3.85" fill="#FF204E" scaleX="0.75" scaleY="0.75" />
+                                 </children>
+                              </StackPane>
+                              <VBox spacing="4">
+                                 <children>
+                                    <Label style="-fx-font-size: 14px; -fx-text-fill: #f0f0f8;                                               -fx-font-weight: bold;" text="Manage Patients" />
+                                    <Label style="-fx-font-size: 11px; -fx-text-fill: #d0d0e0;" text="Add · Edit · Remove" />
+                                 </children>
+                              </VBox>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <SVGPath content="M5 12h14M15 16l4 -4l-4 -4" fill="#A0153E" scaleX="0.7" scaleY="0.7" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox onMouseClicked="#navigateTherapySessionsManagement" prefHeight="88" prefWidth="310.0" style="-fx-background-color: #101018; -fx-background-radius: 10;                                  -fx-border-color: #1c1c28; -fx-border-radius: 10;                                  -fx-border-width: 1; -fx-cursor: hand;">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="14">
+                           <children>
+                              <StackPane alignment="CENTER" prefHeight="42" prefWidth="42" style="-fx-background-color: #1e0f1a; -fx-background-radius: 10;">
+                                 <children>
+                                    <SVGPath content="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2M9 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2v0M9 12h6M9 16h4" fill="#FF204E" scaleX="0.75" scaleY="0.75" />
+                                 </children>
+                              </StackPane>
+                              <VBox spacing="4">
+                                 <children>
+                                    <Label style="-fx-font-size: 14px; -fx-text-fill: #f0f0f8;                                               -fx-font-weight: bold;" text="Therapy Sessions" />
+                                    <Label style="-fx-font-size: 11px; -fx-text-fill: #d0d0e0;" text="Book · Reschedule · Cancell" />
+                                 </children>
+                              </VBox>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <SVGPath content="M5 12h14M15 16l4 -4l-4 -4" fill="#A0153E" scaleX="0.7" scaleY="0.7" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox onMouseClicked="#navigatePatientsWithPrograms" prefHeight="88" prefWidth="310.0" style="-fx-background-color: #101018; -fx-background-radius: 10;                                  -fx-border-color: #1c1c28; -fx-border-radius: 10;                                  -fx-border-width: 1; -fx-cursor: hand;">
+                     <padding>
+                        <Insets bottom="20" left="20" right="20" top="20" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="239.0" spacing="14">
+                           <children>
+                              <StackPane alignment="CENTER" prefHeight="42" prefWidth="42" style="-fx-background-color: #1e0f1a; -fx-background-radius: 10;">
+                                 <children>
+                                    <SVGPath content="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0M12 7v5l3 3" fill="#FF204E" scaleX="0.75" scaleY="0.75" />
+                                 </children>
+                              </StackPane>
+                              <VBox spacing="4">
+                                 <children>
+                                    <Label style="-fx-font-size: 14px; -fx-text-fill: #f0f0f8;                                               -fx-font-weight: bold;" text="Patients With Programs" />
+                                    <Label style="-fx-font-size: 11px; -fx-text-fill: #d0d0e0;" text="History · Show" />
+                                 </children>
+                              </VBox>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <SVGPath content="M5 12h14M15 16l4 -4l-4 -4" fill="#A0153E" scaleX="0.7" scaleY="0.7" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </HBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

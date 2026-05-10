@@ -1,8 +1,7 @@
 package lk.ijse.mental_health_therapy_center_system.bo.custom.impl;
 
-import lk.ijse.mental_health_therapy_center_system.dto.TherapistDTO;
 import lk.ijse.mental_health_therapy_center_system.entity.*;
-import lk.ijse.mental_health_therapy_center_system.utill.AlertMode;
+import lk.ijse.mental_health_therapy_center_system.util.AlertMode;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.RegisterBO;
 import lk.ijse.mental_health_therapy_center_system.config.FactoryConfiguration;
 import lk.ijse.mental_health_therapy_center_system.dao.DAOFactory;

@@ -7,12 +7,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import lk.ijse.mental_health_therapy_center_system.utill.AlertMode;
+import lk.ijse.mental_health_therapy_center_system.util.AlertMode;
 import lk.ijse.mental_health_therapy_center_system.bo.BOFactory;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.RegisterBO;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.TherapyProgramBO;
 import lk.ijse.mental_health_therapy_center_system.dto.PatientDTO;
 import lk.ijse.mental_health_therapy_center_system.dto.TherapyProgramDTO;
+import lk.ijse.mental_health_therapy_center_system.util.NavigationUtil;
 
 import java.math.BigDecimal;
 import java.net.URL;
@@ -249,5 +250,11 @@ public class PatientController implements Initializable {
         yourAmount.setText("");
         totalAmount.setText("");
         therapyProgramsComboBox.getSelectionModel().clearSelection();
+    }
+
+    // Navigate to Dashboard
+    @FXML
+    private void navigateDashboard(MouseEvent event) {
+        NavigationUtil.navigate(event, "Dashboard.fxml");
     }
 }
