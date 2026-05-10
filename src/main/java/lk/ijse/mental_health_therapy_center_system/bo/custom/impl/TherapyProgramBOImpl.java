@@ -57,6 +57,24 @@ public class TherapyProgramBOImpl implements TherapyProgramBO {
     }
 
     @Override
+    public List<TherapyProgramDTO> getActiveAllTherapyPrograms() {
+        List<TherapyProgramDTO> therapyProgramDTOs = new ArrayList<>();
+        for (TherapyProgram therapyProgram : therapyProgramDAO.getAll()) {
+            if (therapyProgram.getStatus().equalsIgnoreCase("Active")) {
+                therapyProgramDTOs.add(new TherapyProgramDTO(
+                        therapyProgram.getId(),
+                        therapyProgram.getName(),
+                        therapyProgram.getDuration(),
+                        therapyProgram.getFee(),
+                        therapyProgram.getStatus()
+                ));
+            }
+        }
+
+        return therapyProgramDTOs;
+    }
+
+    @Override
     public TherapyProgramDTO getProgramById(int programId) {
         TherapyProgram therapyProgram = therapyProgramDAO.getProgram(programId);
         return new TherapyProgramDTO(

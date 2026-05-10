@@ -1,6 +1,8 @@
 package lk.ijse.mental_health_therapy_center_system.bo.custom.impl;
 
+import lk.ijse.mental_health_therapy_center_system.dao.custom.TherapyProgramDAO;
 import lk.ijse.mental_health_therapy_center_system.entity.*;
+import lk.ijse.mental_health_therapy_center_system.tm.PatientEnrolledProgramsTM;
 import lk.ijse.mental_health_therapy_center_system.util.AlertMode;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.RegisterBO;
 import lk.ijse.mental_health_therapy_center_system.config.FactoryConfiguration;
@@ -15,70 +17,125 @@ import java.time.LocalDate;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class RegisterBOImpl implements RegisterBO {
-    private final PatientDAO patientDAO = (PatientDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.PATIENT);
+    private final PatientDAO patientDAO = (PatientDAO) DAOFactory.getInstance()
+            .getDAO(DAOFactory.DAOType.PATIENT);
+
     private final PatientProgramDAO patientProgramDAO = (PatientProgramDAO) DAOFactory.getInstance().
             getDAO(DAOFactory.DAOType.PATIENT_PROGRAM);
+
+    private final TherapyProgramDAO therapyProgramDAO = (TherapyProgramDAO) DAOFactory.getInstance().
+            getDAO(DAOFactory.DAOType.THERAPY_PROGRAM);
 
     @Override
     public boolean savePatient(PatientDTO patientDTO, TherapyProgramDTO therapyProgramDTO, BigDecimal payAmount) {
         Session session = FactoryConfiguration.getInstance().getCurrentSession();
         Transaction transaction = session.beginTransaction();
 
+        Patient existingPatient = session.get(Patient.class, patientDTO.getId());
         try {
-            // Set patient
-            Patient patient = new Patient();
-            patient.setName(patientDTO.getName());
-            patient.setEmail(patientDTO.getEmail());
-            patient.setPhone(patientDTO.getPhone());
-            patient.setMedicalHistory(patientDTO.getMedicalHistory());
-            patient.setStatus("Active");
+            if (existingPatient == null) {
+                // Set patient
+                Patient patient = new Patient();
+                patient.setName(patientDTO.getName());
+                patient.setEmail(patientDTO.getEmail());
+                patient.setPhone(patientDTO.getPhone());
+                patient.setMedicalHistory(patientDTO.getMedicalHistory());
+                patient.setStatus("Active");
 
-            // Get therapy program
-            TherapyProgram therapyProgram = session.get(TherapyProgram.class, therapyProgramDTO.getId());
-            if (therapyProgram == null) {
-                transaction.rollback();
-                return false;
-            }
+                // Get therapy program
+                TherapyProgram therapyProgram = session.get(TherapyProgram.class, therapyProgramDTO.getId());
+                if (therapyProgram == null) {
+                    transaction.rollback();
+                    return false;
+                }
 
-            // Set patient program
-            PatientProgram patientProgram = new PatientProgram();
-            patientProgram.setPatient(patient);
-            patientProgram.setTherapyProgram(therapyProgram);
+                // Set patient program
+                PatientProgram patientProgram = new PatientProgram();
+                patientProgram.setPatient(patient);
+                patientProgram.setTherapyProgram(therapyProgram);
 
-            // Add PatientProgram into Patient
-            patient.getPatientPrograms().add(patientProgram);
+                // Add PatientProgram into Patient
+                patient.getPatientPrograms().add(patientProgram);
 
-            // Add payment
-            Payment payment = new Payment();
-            String payStatus = "Pending";
-            if (payAmount.compareTo(therapyProgram.getFee()) < 0) {
-                payStatus = "Pending";
-                payment.setName("Upfront Payment");
+                // Add payment
+                Payment payment = new Payment();
+                String payStatus = "Pending";
+                if (payAmount.compareTo(therapyProgram.getFee()) < 0) {
+                    payStatus = "Pending";
+                    payment.setName("Upfront Payment");
 
-            } else if (payAmount.compareTo(therapyProgram.getFee()) == 0) {
-                payStatus = "Completed";
-                payment.setName("Payment is Completed");
+                } else if (payAmount.compareTo(therapyProgram.getFee()) == 0) {
+                    payStatus = "Completed";
+                    payment.setName("Payment is Completed");
+
+                } else {
+                    AlertMode.error("Something went wrong!");
+                    throw new RuntimeException();
+                }
+                payment.setStatus(payStatus);
+                payment.setPaidAmount(payAmount);
+                payment.setPendingAmount(therapyProgram.getFee().subtract(payAmount));
+                payment.setDate(LocalDate.now());
+
+                payment.setPatientProgram(patientProgram);
+
+                // Set payment into PatientProgram
+                patientProgram.setPayment(payment);
+
+                patientDAO.save(patient);
+                transaction.commit();
+                return true;
 
             } else {
-                AlertMode.error("Something went wrong!");
-                throw new RuntimeException();
+                // Get therapy program
+                TherapyProgram therapyProgram = session.get(TherapyProgram.class, therapyProgramDTO.getId());
+                if (therapyProgram == null) {
+                    transaction.rollback();
+                    return false;
+                }
+
+                // Set patient program
+                PatientProgram patientProgram = new PatientProgram();
+                patientProgram.setPatient(existingPatient);
+                patientProgram.setTherapyProgram(therapyProgram);
+
+                // Add PatientProgram into Patient
+                existingPatient.getPatientPrograms().add(patientProgram);
+
+                // Add payment
+                Payment payment = new Payment();
+                String payStatus = "Pending";
+                if (payAmount.compareTo(therapyProgram.getFee()) < 0) {
+                    payStatus = "Pending";
+                    payment.setName("Upfront Payment");
+
+                } else if (payAmount.compareTo(therapyProgram.getFee()) == 0) {
+                    payStatus = "Completed";
+                    payment.setName("Payment is Completed");
+
+                } else {
+                    AlertMode.error("Something went wrong!");
+                    throw new RuntimeException();
+                }
+                payment.setStatus(payStatus);
+                payment.setPaidAmount(payAmount);
+                payment.setPendingAmount(therapyProgram.getFee().subtract(payAmount));
+                payment.setDate(LocalDate.now());
+
+                payment.setPatientProgram(patientProgram);
+
+                // Set payment into PatientProgram
+                patientProgram.setPayment(payment);
+
+                session.merge(existingPatient);
+                transaction.commit();
+                return true;
             }
-            payment.setStatus(payStatus);
-            payment.setPaidAmount(payAmount);
-            payment.setPendingAmount(therapyProgram.getFee().subtract(payAmount));
-            payment.setDate(LocalDate.now());
-
-            payment.setPatientProgram(patientProgram);
-
-            // Set payment into PatientProgram
-            patientProgram.setPayment(payment);
-
-            patientDAO.save(patient);
-            transaction.commit();
-            return true;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -119,6 +176,60 @@ public class RegisterBOImpl implements RegisterBO {
         }
 
         return patientDTOs;
+    }
+
+    @Override
+    public List<PatientEnrolledProgramsTM> getAllPatientPrograms() {
+        List<PatientEnrolledProgramsTM> patientEnrolledProgramsTMs = new ArrayList<>();
+
+        int therapyProgramCount = 0;
+        for (TherapyProgram therapyProgram : therapyProgramDAO.getAll()) {
+            if (therapyProgram.getStatus().equals("Active")) {
+                therapyProgramCount++;
+            }
+        }
+
+        for (PatientProgram patientProgram : patientProgramDAO.getAll()) {
+            int patientId = patientProgram.getPatient().getId();
+
+            boolean alreadyAdded = patientEnrolledProgramsTMs.stream()
+                    .anyMatch(tm -> tm.getPatientId() == patientId);
+
+            if (alreadyAdded) {
+                continue;
+            }
+
+            Long enrolledProgramsCount = patientProgramDAO.getProgramEnrolledCount(patientId);
+
+            String status = "Not All Programs";
+
+            if (enrolledProgramsCount == therapyProgramCount) {
+                status = "All Programs";
+            }
+
+            patientEnrolledProgramsTMs.add(new PatientEnrolledProgramsTM(
+                    patientProgram.getId(),
+                    patientId,
+                    patientProgram.getPatient().getName(),
+                    enrolledProgramsCount,
+                    status
+            ));
+        }
+
+        return patientEnrolledProgramsTMs;
+    }
+
+    @Override
+    public List<PatientEnrolledProgramsTM> getPatientsEnrolledAllPrograms() {
+        List<PatientEnrolledProgramsTM> allProgramsEnrolledPatients = new ArrayList<>();
+
+        for (PatientEnrolledProgramsTM patientEnrolledProgramsTM : getAllPatientPrograms()) {
+            if (patientEnrolledProgramsTM.getEnrolledStatus().equals("All Programs")) {
+                allProgramsEnrolledPatients.add(patientEnrolledProgramsTM);
+            }
+        }
+
+        return allProgramsEnrolledPatients;
     }
 
     @Override

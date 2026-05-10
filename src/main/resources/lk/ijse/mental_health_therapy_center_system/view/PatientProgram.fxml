@@ -13,14 +13,14 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="720" prefWidth="1200" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.mental_health_therapy_center_system.controller.PaymentController">
+<BorderPane prefHeight="720" prefWidth="1200" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.mental_health_therapy_center_system.controller.PatientProgramController">
 
     <!-- TOP NAV -->
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="60" style="-fx-background-color: #111111; -fx-border-color: #5D0E41; -fx-border-width: 0 0 2 0;">
             <padding><Insets left="30" right="30" /></padding>
             <Label style="-fx-font-family: 'Georgia'; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #FF204E;" text="SERENITY" />
-            <Label style="-fx-font-size: 13px; -fx-text-fill: #777;" text="  |  Payment Management" />
+            <Label style="-fx-font-size: 13px; -fx-text-fill: #777;" text="  |  Patient Enrolled Programs" />
             <Region HBox.hgrow="ALWAYS" />
             <Button onMouseClicked="#navigateDashboard" style="-fx-background-color: transparent; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 3; -fx-text-fill: #777; -fx-font-size: 12px; -fx-cursor: hand; -fx-padding: 6 18;" text="← Dashboard" />
         </HBox>
@@ -36,7 +36,7 @@
                         <Insets bottom="30" left="28" right="28" top="30" />
                     </padding>
 
-                    <Label style="-fx-font-size: 10px; -fx-text-fill: #FF204E; -fx-letter-spacing: 3px; -fx-font-weight: bold;" text="PAYMENT DETAILS" />
+                    <Label style="-fx-font-size: 10px; -fx-text-fill: #FF204E; -fx-letter-spacing: 3px; -fx-font-weight: bold;" text="Programs Enrolled DETAILS" />
                     <Separator style="-fx-background-color: #222;" />
 
                     <!-- Payment ID -->
@@ -56,7 +56,7 @@
                         <Label prefHeight="0.0" prefWidth="226.0" style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 2px; -fx-font-weight: bold;" text="Patients Enrolled in All Therapy Programs" />
                     </VBox>
 
-                    <Button onAction="#filterAllPatients" prefHeight="38" prefWidth="231.0" style="-fx-background-color: #1a1a1a; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 4; -fx-text-fill: #ccc; -fx-font-size: 12px; -fx-cursor: hand;" text="Filter Patients" />
+                    <Button onAction="#filterAllPatients" prefHeight="38" prefWidth="231.0" style="-fx-background-color: #1a1a1a; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 4; -fx-text-fill: #ccc; -fx-font-size: 12px; -fx-cursor: hand; -fx-background-radius: 40; -fx-border-radius: 40;" text="Filter Patients" />
 
                     <!-- Payment Date -->
                     <VBox spacing="5" />
@@ -64,13 +64,14 @@
                     <!-- ═══════════════════════════════════════ -->
                     <!-- INVOICE PREVIEW SECTION                 -->
                     <!-- ═══════════════════════════════════════ -->
-                    <VBox fx:id="invoicePane" spacing="0" style="-fx-background-color: #111111; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;">
+                    <VBox fx:id="invoicePane" prefHeight="0.0" prefWidth="224.0" spacing="0" style="-fx-background-color: #111111; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;">
 
                         <!-- Dashed Divider -->
                         <Region prefHeight="1" style="-fx-background-color: #2a2a2a; -fx-margin: 0 16;" />
                         <VBox style="-fx-padding: 0 16;" />
 
                     </VBox>
+               <Button layoutX="38.0" layoutY="181.0" onMouseClicked="#refreshTable" prefHeight="38" prefWidth="231.0" style="-fx-background-color: #5D0E41; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 4; -fx-text-fill: #ccc; -fx-font-size: 12px; -fx-cursor: hand; -fx-border-radius: 40; -fx-background-radius: 40;" text="Refresh Table" />
 
                 </VBox>
             </ScrollPane>
@@ -89,9 +90,10 @@
                 <TableView fx:id="patientProgramTable" layoutX="10.0" layoutY="10.0" prefHeight="332.0" prefWidth="959.0">
                     <columns>
                         <TableColumn fx:id="colId" prefWidth="70.94570922851562" text="Id" />
-                        <TableColumn fx:id="colPatientId" prefWidth="157.50054931640625" text="Patient Id" />
-                        <TableColumn fx:id="colPatientName" prefWidth="441.49945068359375" text="Patient Name" />
-                        <TableColumn fx:id="colEnrolledProgramsCount" prefWidth="191.982421875" text="Entrolled Programs" />
+                        <TableColumn fx:id="colPatientId" prefWidth="114.96841430664062" text="Patient Id" />
+                        <TableColumn fx:id="colPatientName" prefWidth="367.0315246582031" text="Patient Name" />
+                        <TableColumn fx:id="colEnrolledProgramsCount" prefWidth="134.91766357421875" text="Entrolled Programs" />
+                  <TableColumn fx:id="colEnrolledStatus" prefWidth="173.1209716796875" text="Enrolled Status" />
                     </columns>
                     <stylesheets>
                         <URL value="@styles/table.css" />

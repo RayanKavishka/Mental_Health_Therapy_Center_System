@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface PatientProgramDAO extends CrudDAO<PatientProgram> {
     List<TherapyProgram> getAllTherapyProgram(int id);
+    Long getProgramEnrolledCount(int patientId);
 }

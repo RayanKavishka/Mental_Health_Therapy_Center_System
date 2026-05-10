@@ -31,7 +31,18 @@ public class PatientProgramDAOImpl implements PatientProgramDAO {
 
     @Override
     public List<PatientProgram> getAll() {
-        return List.of();
+        Session session = FactoryConfiguration.getInstance().getSession();
+
+        try {
+            return session.createQuery("from PatientProgram", PatientProgram.class)
+                    .list();
+
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+
+        } finally {
+            session.close();
+        }
     }
 
     @Override
@@ -43,6 +54,24 @@ public class PatientProgramDAOImpl implements PatientProgramDAO {
             return session.createQuery(hql, TherapyProgram.class)
                     .setParameter("patientId", id)
                     .list();
+
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public Long getProgramEnrolledCount(int patientId) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+
+        try {
+            return session.createQuery("SELECT COUNT(pp.id) FROM PatientProgram pp WHERE pp.patient.id = :patientId",
+                    Long.class)
+                    .setParameter("patientId", patientId)
+                    .uniqueResult();
 
         } catch (RuntimeException e) {
             throw new RuntimeException(e);

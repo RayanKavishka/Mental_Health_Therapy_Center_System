@@ -4,6 +4,7 @@ import lk.ijse.mental_health_therapy_center_system.bo.SuperBO;
 import lk.ijse.mental_health_therapy_center_system.dto.PatientDTO;
 import lk.ijse.mental_health_therapy_center_system.dto.TherapyProgramDTO;
 import lk.ijse.mental_health_therapy_center_system.entity.Patient;
+import lk.ijse.mental_health_therapy_center_system.tm.PatientEnrolledProgramsTM;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -13,6 +14,8 @@ public interface RegisterBO extends SuperBO {
     boolean updatePatient(PatientDTO patientDTO);
     boolean deletePatient(int patientId);
     List<PatientDTO> getAllPatients();
+    List<PatientEnrolledProgramsTM> getAllPatientPrograms();
     List<TherapyProgramDTO> getAllTherapyProgramsByPatient(int id);
+    List<PatientEnrolledProgramsTM> getPatientsEnrolledAllPrograms();
     PatientDTO getPatientById(int patientId);
 }

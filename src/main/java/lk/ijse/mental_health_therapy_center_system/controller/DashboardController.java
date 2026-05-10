@@ -74,7 +74,7 @@ public class DashboardController implements Initializable {
 
     @FXML
     private void navigatePatientsWithPrograms(MouseEvent event) {
-        NavigationUtil.navigate(event, "PatientWithPrograms.fxml");
+        NavigationUtil.navigate(event, "PatientProgram.fxml");
     }
 
     @FXML

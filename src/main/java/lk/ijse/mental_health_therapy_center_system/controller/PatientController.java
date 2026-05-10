@@ -96,7 +96,7 @@ public class PatientController implements Initializable {
         loadPatientTable();
 
         try {
-            List<TherapyProgramDTO> therapyPrograms = therapyProgramBO.getAllTherapyPrograms();
+            List<TherapyProgramDTO> therapyPrograms = therapyProgramBO.getActiveAllTherapyPrograms();
             ObservableList<TherapyProgramDTO> obList = FXCollections.observableArrayList();
             obList.addAll(therapyPrograms);
 
@@ -135,6 +135,7 @@ public class PatientController implements Initializable {
     // Handle save patient
     @FXML
     private void savePatient() {
+        String id = patientIdFiled.getText();
         String name = patientNameFiled.getText();
         String email = patientEmailFiled.getText();
         String phone = patientPhoneFiled.getText();
@@ -162,6 +163,7 @@ public class PatientController implements Initializable {
 
         } else {
             boolean isSaved = registerBO.savePatient(new PatientDTO(
+                    Integer.parseInt(id),
                     name,
                     email,
                     phone,
@@ -237,6 +239,7 @@ public class PatientController implements Initializable {
             patientEmailFiled.setText(selectedObj.getEmail());
             patientPhoneFiled.setText(String.valueOf(selectedObj.getPhone()));
             patientMediHisFiled.setText(String.valueOf(selectedObj.getMedicalHistory()));
+
         }
     }
 
