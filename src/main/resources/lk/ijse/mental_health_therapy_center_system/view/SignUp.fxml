@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane prefHeight="660" prefWidth="900" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.mental_health_therapy_center_system.controller.SignUpController">
+
+    <HBox alignment="CENTER">
+
+        <!-- Left Sign-Up Form Panel (was right in Sign In) -->
+        <VBox alignment="CENTER" prefHeight="660" prefWidth="480" style="-fx-background-color: #111111;">
+            <padding><Insets bottom="40" left="60" right="60" top="50" /></padding>
+
+            <Label style="-fx-font-size: 10px; -fx-text-fill: #FF204E; -fx-letter-spacing: 4px; -fx-font-weight: bold;" text="GET STARTED" />
+
+            <Label style="-fx-font-family: 'Georgia'; -fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: white;" text="Create Account">
+                <VBox.margin><Insets bottom="30" top="8" /></VBox.margin>
+            </Label>
+
+            <!-- Role -->
+            <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 3px; -fx-font-weight: bold;" text="ROLE" />
+            <ComboBox fx:id="userRoleComboBox" prefHeight="44" prefWidth="360" promptText="Select your role" style="-fx-background-color: #1a1a1a; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #666;">
+                <VBox.margin><Insets bottom="16" top="6" /></VBox.margin>
+            </ComboBox>
+
+            <!-- Username -->
+            <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 3px; -fx-font-weight: bold;" text="USERNAME">
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin></Label>
+            <TextField fx:id="userNameField" prefHeight="44" prefWidth="360" promptText="Choose a username" style="-fx-background-color: #1a1a1a; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #555;">
+                <VBox.margin><Insets bottom="16" top="6" /></VBox.margin>
+            </TextField>
+
+            <!-- Password -->
+            <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 3px; -fx-font-weight: bold;" text="PASSWORD">
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin></Label>
+            <PasswordField fx:id="passwordField" prefHeight="44" prefWidth="360" promptText="Create a password" style="-fx-background-color: #1a1a1a; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #555;">
+                <VBox.margin><Insets bottom="16" top="6" /></VBox.margin>
+            </PasswordField>
+
+            <!-- Confirm Password -->
+            <Label style="-fx-font-size: 10px; -fx-text-fill: #A0153E; -fx-letter-spacing: 3px; -fx-font-weight: bold;" text="CONFIRM PASSWORD">
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin></Label>
+            <PasswordField fx:id="confirmPassField" prefHeight="44" prefWidth="360" promptText="Re-enter your password" style="-fx-background-color: #1a1a1a; -fx-border-color: #5D0E41; -fx-border-width: 1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-size: 13px; -fx-prompt-text-fill: #555;">
+                <VBox.margin><Insets bottom="26" top="6" /></VBox.margin>
+            </PasswordField>
+
+            <!-- Sign Up Button -->
+            <Button onAction="#handleSignUp" prefHeight="46" prefWidth="360" style="-fx-background-color: linear-gradient(to right, #A0153E, #FF204E); -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: bold; -fx-background-radius: 4; -fx-cursor: hand;" text="CREATE ACCOUNT">
+                <VBox.margin><Insets bottom="16" /></VBox.margin>
+            </Button>
+         <HBox prefHeight="47.0" prefWidth="360.0" spacing="64.0" style="-fx-alignment: center;">
+            <children>
+      
+                  <Label style="-fx-font-size: 11px; -fx-text-fill: #555; -fx-font-style: italic;" text="Already have an account ? Sign in here." />
+               <Button onMouseClicked="#navigateToSignIn" prefHeight="30.0" prefWidth="116.0" style="-fx-background-color: linear-gradient(to right, #A0153E, #FF204E); -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: bold; -fx-background-radius: 4; -fx-cursor: hand; -fx-border-radius: 30; -fx-background-radius: 30;" text="Sign in" />
+            </children>
+         </HBox>
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <Label style="-fx-font-size: 10px; -fx-text-fill: #333;" text="© 2026 Serenity Mental Health Therapy Center" />
+        </VBox>
+
+        <!-- Right Branding Panel (was left in Sign In) -->
+        <VBox alignment="TOP_LEFT" prefHeight="660" prefWidth="420" style="-fx-background-color: linear-gradient(to bottom, #5D0E41, #A0153E, #FF204E);">
+            <padding><Insets bottom="40" left="50" right="40" top="60" /></padding>
+
+            <Label style="-fx-font-family: 'Georgia'; -fx-font-size: 34px; -fx-font-weight: bold; -fx-text-fill: white;" text="SERENITY" />
+            <Label style="-fx-font-family: 'Georgia'; -fx-font-size: 13px; -fx-text-fill: rgba(255,255,255,0.75);" text="Mental Health Therapy Center">
+                <VBox.margin><Insets bottom="60" /></VBox.margin>
+            </Label>
+
+            <Label style="-fx-text-fill: rgba(255,255,255,0.4); -fx-font-size: 18px;" text="———">
+                <VBox.margin><Insets bottom="20" /></VBox.margin>
+            </Label>
+
+            <Label style="-fx-font-family: 'Georgia'; -fx-font-size: 24px; -fx-font-style: italic; -fx-text-fill: white; -fx-line-spacing: 6px;" text="&quot;Your journey to&#10;wellness begins here.&quot;" wrapText="true">
+                <VBox.margin><Insets bottom="40" /></VBox.margin>
+            </Label>
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <Label style="-fx-font-size: 11px; -fx-text-fill: rgba(255,255,255,0.55);" text="Secure  ·  Confidential  ·  Compassionate" />
+        </VBox>
+
+    </HBox>
+</StackPane>

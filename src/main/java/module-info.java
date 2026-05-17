@@ -9,6 +9,7 @@ module lk.ijse.mental_health_therapy_center_system {
     requires cache.api;
     requires org.controlsfx.controls;
     requires mysql.connector.j;
+    requires jbcrypt;
 
     // Allow To Hibernate to reflect on entity classes
     opens lk.ijse.mental_health_therapy_center_system.entity to org.hibernate.orm.core;

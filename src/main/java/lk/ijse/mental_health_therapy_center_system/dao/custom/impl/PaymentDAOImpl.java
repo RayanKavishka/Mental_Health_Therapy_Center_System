@@ -70,6 +70,7 @@ public class PaymentDAOImpl implements PaymentDAO {
             return session.createQuery(hql, Payment.class)
                     .setParameter("patientId", patientId)
                     .setParameter("programId", programId)
+                    .setMaxResults(1)
                     .uniqueResult();
 
         } catch (RuntimeException e) {
