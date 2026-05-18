@@ -114,4 +114,24 @@ public class PatientDAOImpl implements PatientDAO {
             session.close();
         }
     }
+
+    @Override
+    public Patient getPatientByPhone(String phoneNo) {
+        Session session = FactoryConfiguration.getInstance().getCurrentSession();
+
+        try {
+            Patient patient = (Patient) session.createQuery("from Patient p where p.phone = :phoneNumber")
+                    .setParameter("phoneNumber", phoneNo)
+                    .setMaxResults(1)
+                    .uniqueResult();
+
+            if (patient == null) {
+                return null;
+            }
+            return patient;
+
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

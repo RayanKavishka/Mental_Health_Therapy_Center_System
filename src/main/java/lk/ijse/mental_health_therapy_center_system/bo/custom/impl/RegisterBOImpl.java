@@ -2,6 +2,7 @@ package lk.ijse.mental_health_therapy_center_system.bo.custom.impl;
 
 import lk.ijse.mental_health_therapy_center_system.dao.custom.TherapyProgramDAO;
 import lk.ijse.mental_health_therapy_center_system.entity.*;
+import lk.ijse.mental_health_therapy_center_system.exception.PaymentProcessException;
 import lk.ijse.mental_health_therapy_center_system.tm.PatientEnrolledProgramsTM;
 import lk.ijse.mental_health_therapy_center_system.util.AlertMode;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.RegisterBO;
@@ -36,7 +37,7 @@ public class RegisterBOImpl implements RegisterBO {
         Session session = FactoryConfiguration.getInstance().getCurrentSession();
         Transaction transaction = session.beginTransaction();
 
-        Patient existingPatient = session.get(Patient.class, patientDTO.getId());
+        Patient existingPatient = patientDAO.getPatientByPhone(patientDTO.getPhone());
         try {
             if (existingPatient == null) {
                 // Set patient
@@ -64,6 +65,7 @@ public class RegisterBOImpl implements RegisterBO {
 
                 // Add payment
                 Payment payment = new Payment();
+
                 String payStatus = "Pending";
                 if (payAmount.compareTo(therapyProgram.getFee()) < 0) {
                     payStatus = "Pending";
@@ -74,8 +76,7 @@ public class RegisterBOImpl implements RegisterBO {
                     payment.setName("Payment is Completed");
 
                 } else {
-                    AlertMode.error("Something went wrong!");
-                    throw new RuntimeException();
+                    throw new PaymentProcessException("Your payment process is failed");
                 }
                 payment.setStatus(payStatus);
                 payment.setPaidAmount(payAmount);
@@ -136,6 +137,11 @@ public class RegisterBOImpl implements RegisterBO {
                 transaction.commit();
                 return true;
             }
+
+        } catch (PaymentProcessException pe) {
+            transaction.rollback();
+            AlertMode.error(pe.getMessage());
+            return false;
 
         } catch (Exception e) {
             e.printStackTrace();

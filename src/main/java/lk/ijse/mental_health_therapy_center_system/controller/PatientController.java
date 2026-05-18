@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.mental_health_therapy_center_system.exception.MissingFieldsException;
 import lk.ijse.mental_health_therapy_center_system.util.AlertMode;
 import lk.ijse.mental_health_therapy_center_system.bo.BOFactory;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.RegisterBO;
@@ -135,7 +136,6 @@ public class PatientController implements Initializable {
     // Handle save patient
     @FXML
     private void savePatient() {
-        String id = patientIdFiled.getText();
         String name = patientNameFiled.getText();
         String email = patientEmailFiled.getText();
         String phone = patientPhoneFiled.getText();
@@ -143,38 +143,42 @@ public class PatientController implements Initializable {
 
         String payAmount = yourAmount.getText();
 
-        if (!name.matches(NAME_REGEX)) {
-            AlertMode.error("Invalid Name!");
+        try {
+            if (!name.matches(NAME_REGEX)) {
+                AlertMode.error("Invalid Name!");
 
-        } else if (!email.matches(EMAIL_REGEX)) {
-            AlertMode.error("Invalid Email!");
+            } else if (!email.matches(EMAIL_REGEX)) {
+                AlertMode.error("Invalid Email!");
 
-        } else if (!phone.matches(PHONE_REGEX)) {
-            AlertMode.error("Invalid Phone Number!");
+            } else if (!phone.matches(PHONE_REGEX)) {
+                AlertMode.error("Invalid Phone Number!");
 
-        } else if (mediHistory.trim().isEmpty()) {
-            AlertMode.error("Invalid Medical History!");
+            } else if (mediHistory.trim().isEmpty()) {
+                throw new MissingFieldsException("Invalid Medical History!");
 
-        } else if (therapyProgramsComboBox.getSelectionModel().isEmpty()) {
-            AlertMode.error("Please Select Therapy Program!");
+            } else if (therapyProgramsComboBox.getSelectionModel().isEmpty()) {
+                throw new MissingFieldsException("Please Select Therapy Program!");
 
-        } else if (payAmount.isEmpty()) {
-            AlertMode.error("Please Type Your Payment Amount!");
+            } else if (payAmount.isEmpty()) {
+                throw new MissingFieldsException("Please Type Your Payment Amount!");
 
-        } else {
-            boolean isSaved = registerBO.savePatient(new PatientDTO(
-                    Integer.parseInt(id),
-                    name,
-                    email,
-                    phone,
-                    mediHistory
-            ), therapyProgramsComboBox.getSelectionModel().getSelectedItem(), new BigDecimal(payAmount));
+            } else {
+                boolean isSaved = registerBO.savePatient(new PatientDTO(
+                        name,
+                        email,
+                        phone,
+                        mediHistory
+                ), therapyProgramsComboBox.getSelectionModel().getSelectedItem(), new BigDecimal(payAmount));
 
-            if (isSaved) {
-                loadPatientTable();
-                resetAllFields();
-                AlertMode.info("Patient Registration Successfully!");
+                if (isSaved) {
+                    loadPatientTable();
+                    resetAllFields();
+                    AlertMode.info("Patient Registration Successfully!");
+                }
             }
+
+        } catch (MissingFieldsException me) {
+            AlertMode.error(me.getMessage());
         }
     }
 
@@ -187,32 +191,37 @@ public class PatientController implements Initializable {
         String phone = patientPhoneFiled.getText();
         String mediHistory = patientMediHisFiled.getText();
 
-        if (!name.matches(NAME_REGEX)) {
-            AlertMode.error("Invalid Name!");
+        try {
+            if (!name.matches(NAME_REGEX)) {
+                AlertMode.error("Invalid Name!");
 
-        } else if (!email.matches(EMAIL_REGEX)) {
-            AlertMode.error("Invalid Email!");
+            } else if (!email.matches(EMAIL_REGEX)) {
+                AlertMode.error("Invalid Email!");
 
-        } else if (!phone.matches(PHONE_REGEX)) {
-            AlertMode.error("Invalid Phone Number!");
+            } else if (!phone.matches(PHONE_REGEX)) {
+                AlertMode.error("Invalid Phone Number!");
 
-        } else if (mediHistory.trim().isEmpty()) {
-            AlertMode.error("Invalid Medical History!");
+            } else if (mediHistory.trim().isEmpty()) {
+                throw new MissingFieldsException("Invalid Medical History!");
 
-        } else {
-            boolean isUpdated = registerBO.updatePatient(new PatientDTO(
-                    Integer.parseInt(id),
-                    name,
-                    email,
-                    phone,
-                    mediHistory
-            ));
+            } else {
+                boolean isUpdated = registerBO.updatePatient(new PatientDTO(
+                        Integer.parseInt(id),
+                        name,
+                        email,
+                        phone,
+                        mediHistory
+                ));
 
-            if (isUpdated) {
-                resetAllFields();
-                loadPatientTable();
-                AlertMode.info("Patient Updated Successfully!");
+                if (isUpdated) {
+                    resetAllFields();
+                    loadPatientTable();
+                    AlertMode.info("Patient Updated Successfully!");
+                }
             }
+
+        } catch (MissingFieldsException me) {
+            AlertMode.error(me.getMessage());
         }
     }
 
@@ -221,11 +230,21 @@ public class PatientController implements Initializable {
     private void deletePatient() {
         String programId = patientIdFiled.getText();
 
-        boolean isDeleted = registerBO.deletePatient(Integer.parseInt(programId));
-        if (isDeleted) {
-            resetAllFields();
-            loadPatientTable();
-            AlertMode.info("Patient Deleted Successfully!");
+        try {
+            if (programId.isEmpty()) {
+                throw new MissingFieldsException("Please select patient!");
+
+            } else {
+                boolean isDeleted = registerBO.deletePatient(Integer.parseInt(programId));
+                if (isDeleted) {
+                    resetAllFields();
+                    loadPatientTable();
+                    AlertMode.info("Patient Deleted Successfully!");
+                }
+            }
+
+        } catch (MissingFieldsException me) {
+            AlertMode.error(me.getMessage());
         }
     }
 

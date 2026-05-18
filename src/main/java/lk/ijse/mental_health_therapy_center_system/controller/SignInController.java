@@ -2,7 +2,6 @@ package lk.ijse.mental_health_therapy_center_system.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -12,6 +11,8 @@ import javafx.scene.input.MouseEvent;
 import lk.ijse.mental_health_therapy_center_system.bo.BOFactory;
 import lk.ijse.mental_health_therapy_center_system.bo.custom.UserBO;
 import lk.ijse.mental_health_therapy_center_system.dto.UserDTO;
+import lk.ijse.mental_health_therapy_center_system.exception.InvalidUserException;
+import lk.ijse.mental_health_therapy_center_system.exception.MissingFieldsException;
 import lk.ijse.mental_health_therapy_center_system.util.AlertMode;
 import lk.ijse.mental_health_therapy_center_system.util.NavigationUtil;
 
@@ -45,17 +46,17 @@ public class SignInController implements Initializable {
         String userName = userNameField.getText();
         String password = passwordField.getText();
 
-        if (userRoleComboBox.getSelectionModel().isEmpty()) {
-            AlertMode.error("Please select user Role");
+        try {
+            if (userRoleComboBox.getSelectionModel().isEmpty()) {
+                throw new MissingFieldsException("Please select user Role");
 
-        } else if (userName.isEmpty()) {
-            AlertMode.error("Please Type user name");
+            } else if (userName.isEmpty()) {
+                throw new MissingFieldsException("Please Type user name");
 
-        } else if (password.isEmpty()) {
-            AlertMode.error("Please type password");
+            } else if (password.isEmpty()) {
+                throw new MissingFieldsException("Please type password");
 
-        } else {
-            try {
+            } else {
                 if (userBO.checkCredentials(new UserDTO(
                         userName,
                         password,
@@ -67,13 +68,16 @@ public class SignInController implements Initializable {
                     clearFields();
 
                 } else {
-                    AlertMode.error("Oops! Invalid credentials. try again!");
+                    throw new InvalidUserException("Oops! Invalid credentials. try again!");
                 }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                AlertMode.error("Something went wrong!");
             }
+
+        } catch (MissingFieldsException | InvalidUserException me) {
+            AlertMode.error(me.getMessage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertMode.error("Something went wrong!");
         }
     }
 

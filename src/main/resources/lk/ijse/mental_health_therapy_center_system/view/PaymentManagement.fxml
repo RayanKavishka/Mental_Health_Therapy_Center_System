@@ -174,7 +174,7 @@
 
                 <Separator style="-fx-background-color: #1e1e1e;" />
 
-                <TableView fx:id="paymentTable" layoutX="10.0" layoutY="10.0" prefHeight="332.0" prefWidth="959.0">
+                <TableView fx:id="paymentTable" layoutX="10.0" layoutY="10.0" prefHeight="468.0" prefWidth="765.0">
                     <columns>
                         <TableColumn fx:id="colId" prefWidth="46.39999008178711" text="Id" />
                         <TableColumn fx:id="colDes" prefWidth="221.27569580078125" text="Description" />
