@@ -24,6 +24,7 @@ public class FactoryConfiguration {
             if (inputStream == null) {
                 throw new RuntimeException("hibernate.properties not found in resources");
             }
+
             properties.load(inputStream);
 
         } catch (Exception e) {
@@ -38,7 +39,6 @@ public class FactoryConfiguration {
         properties.setProperty("hibernate.javax.cache.uri", ehcacheUrl.toString());
 
         configuration.setProperties(properties);
-
         configuration
                 .addAnnotatedClass(Therapist.class)
                 .addAnnotatedClass(TherapyProgram.class)

@@ -71,8 +71,6 @@
          </HBox>
 
             <Region VBox.vgrow="ALWAYS" />
-
-            <Label style="-fx-font-size: 10px; -fx-text-fill: #333;" text="© 2026 Serenity Mental Health Therapy Center" />
         </VBox>
 
         <!-- Right Branding Panel (was left in Sign In) -->
@@ -84,17 +82,7 @@
                 <VBox.margin><Insets bottom="60" /></VBox.margin>
             </Label>
 
-            <Label style="-fx-text-fill: rgba(255,255,255,0.4); -fx-font-size: 18px;" text="———">
-                <VBox.margin><Insets bottom="20" /></VBox.margin>
-            </Label>
-
-            <Label style="-fx-font-family: 'Georgia'; -fx-font-size: 24px; -fx-font-style: italic; -fx-text-fill: white; -fx-line-spacing: 6px;" text="&quot;Your journey to&#10;wellness begins here.&quot;" wrapText="true">
-                <VBox.margin><Insets bottom="40" /></VBox.margin>
-            </Label>
-
             <Region VBox.vgrow="ALWAYS" />
-
-            <Label style="-fx-font-size: 11px; -fx-text-fill: rgba(255,255,255,0.55);" text="Secure  ·  Confidential  ·  Compassionate" />
         </VBox>
 
     </HBox>

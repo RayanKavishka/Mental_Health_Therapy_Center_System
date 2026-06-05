@@ -31,7 +31,7 @@
         <HBox spacing="0">
 
             <!-- LEFT: Form Panel -->
-            <ScrollPane fitToWidth="true" prefWidth="380" style="-fx-background: #0d0d0d; -fx-background-color: #0d0d0d; -fx-border-color: #1a1a1a; -fx-border-width: 0 1 0 0;">
+            <ScrollPane fitToWidth="true" prefHeight="660.0" prefWidth="345.0" style="-fx-background: #0d0d0d; -fx-background-color: #0d0d0d; -fx-border-color: #1a1a1a; -fx-border-width: 0 1 0 0;">
                 <VBox spacing="16">
                     <padding>
                         <Insets bottom="30" left="28" right="28" top="30" />
