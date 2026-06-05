@@ -6,7 +6,6 @@ import lk.ijse.mental_health_therapy_center_system.dao.custom.PaymentDAO;
 import lk.ijse.mental_health_therapy_center_system.dto.PaymentDTO;
 import lk.ijse.mental_health_therapy_center_system.entity.Payment;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

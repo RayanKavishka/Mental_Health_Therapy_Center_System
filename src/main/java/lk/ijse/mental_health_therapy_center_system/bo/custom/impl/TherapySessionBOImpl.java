@@ -109,7 +109,6 @@ public class TherapySessionBOImpl implements TherapySessionBO {
             therapySession.setTherapist(therapist);
             therapySession.setTherapyProgram(program);
 
-            // Set TherapySession into Payment
             Payment payment = paymentDAO.getPaymentByPatientAndProgramIds(patient.getId(), program.getId());
             payment.setName("Payment is Completed");
             payment.setPaidAmount((
@@ -120,7 +119,6 @@ public class TherapySessionBOImpl implements TherapySessionBO {
             payment.setStatus("Completed");
             payment.setTherapySession(therapySession);
 
-            // Save TherapySession after update Payment
             therapySessionDAO.save(therapySession);
             transaction.commit();
             return true;

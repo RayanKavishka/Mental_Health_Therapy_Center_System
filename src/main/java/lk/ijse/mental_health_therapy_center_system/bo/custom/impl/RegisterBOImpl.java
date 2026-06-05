@@ -40,7 +40,7 @@ public class RegisterBOImpl implements RegisterBO {
         Patient existingPatient = patientDAO.getPatientByPhone(patientDTO.getPhone());
         try {
             if (existingPatient == null) {
-                // Set patient
+
                 Patient patient = new Patient();
                 patient.setName(patientDTO.getName());
                 patient.setEmail(patientDTO.getEmail());
@@ -48,24 +48,19 @@ public class RegisterBOImpl implements RegisterBO {
                 patient.setMedicalHistory(patientDTO.getMedicalHistory());
                 patient.setStatus("Active");
 
-                // Get therapy program
                 TherapyProgram therapyProgram = session.get(TherapyProgram.class, therapyProgramDTO.getId());
                 if (therapyProgram == null) {
                     transaction.rollback();
                     return false;
                 }
 
-                // Set patient program
                 PatientProgram patientProgram = new PatientProgram();
                 patientProgram.setPatient(patient);
                 patientProgram.setTherapyProgram(therapyProgram);
 
-                // Add PatientProgram into Patient
                 patient.getPatientPrograms().add(patientProgram);
 
-                // Add payment
                 Payment payment = new Payment();
-
                 String payStatus = "Pending";
                 if (payAmount.compareTo(therapyProgram.getFee()) < 0) {
                     payStatus = "Pending";
@@ -85,7 +80,6 @@ public class RegisterBOImpl implements RegisterBO {
 
                 payment.setPatientProgram(patientProgram);
 
-                // Set payment into PatientProgram
                 patientProgram.setPayment(payment);
 
                 patientDAO.save(patient);
@@ -93,22 +87,19 @@ public class RegisterBOImpl implements RegisterBO {
                 return true;
 
             } else {
-                // Get therapy program
+
                 TherapyProgram therapyProgram = session.get(TherapyProgram.class, therapyProgramDTO.getId());
                 if (therapyProgram == null) {
                     transaction.rollback();
                     return false;
                 }
 
-                // Set patient program
                 PatientProgram patientProgram = new PatientProgram();
                 patientProgram.setPatient(existingPatient);
                 patientProgram.setTherapyProgram(therapyProgram);
 
-                // Add PatientProgram into Patient
                 existingPatient.getPatientPrograms().add(patientProgram);
 
-                // Add payment
                 Payment payment = new Payment();
                 String payStatus = "Pending";
                 if (payAmount.compareTo(therapyProgram.getFee()) < 0) {
@@ -130,7 +121,6 @@ public class RegisterBOImpl implements RegisterBO {
 
                 payment.setPatientProgram(patientProgram);
 
-                // Set payment into PatientProgram
                 patientProgram.setPayment(payment);
 
                 session.merge(existingPatient);

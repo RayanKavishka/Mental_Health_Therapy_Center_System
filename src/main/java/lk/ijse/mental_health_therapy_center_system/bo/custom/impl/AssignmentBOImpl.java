@@ -25,26 +25,23 @@ public class AssignmentBOImpl implements AssignmentBO {
         Transaction transaction = session.beginTransaction();
 
         try {
-            // Set therapist
+
             Therapist therapist = new Therapist();
             therapist.setName(therapistDTO.getName());
             therapist.setEmail(therapistDTO.getEmail());
             therapist.setAvailability(therapistDTO.getAvailability());
             therapist.setStatus("Active");
 
-            // Get therapy program
             TherapyProgram therapyProgram = session.get(TherapyProgram.class, therapyProgramDTO.getId());
             if (therapyProgram == null) {
                 transaction.rollback();
                 return false;
             }
 
-            // Set therapist program
             TherapistProgram therapistProgram = new TherapistProgram();
             therapistProgram.setTherapist(therapist);
             therapistProgram.setTherapyProgram(therapyProgram);
 
-            // Add TherapistProgram into Therapist
             therapist.getTherapistPrograms().add(therapistProgram);
 
             therapistDAO.save(therapist);
